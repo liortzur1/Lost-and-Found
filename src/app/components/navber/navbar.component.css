@@ -1,0 +1,20 @@
+mat-divider {
+    border-color: rgb(199, 198, 198);
+}
+
+.navbar-header {
+    margin-top: 1em;
+    margin-right: 0.5em;
+}
+
+.profilePic {
+    border: 1px solid black;
+    width: 4em;
+    height: 4em;
+    border-radius: 2em;
+}
+
+.navbar {
+    width: 11em;
+    margin-right: 1em;
+}

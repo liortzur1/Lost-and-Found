@@ -1,14 +1,47 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSidenavModule} from '@angular/material';
+import {MatListModule} from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { NavbarMenu } from './components/navber/navbar.component';
+import { MyActivity } from './components/my-activity/my-activity.component';
+import { Lost } from './components/lost/lost.component';
+import { Found } from './components/found/found.component';
+import { Admin } from './components/admin/admin.component';
+import { Stats } from './components/stats/stats.component';
+
+const appRoutes: Routes = [
+  { path: 'my-activity', component: MyActivity },
+  { path: 'lost', component: Lost },
+  { path: 'found', component: Found },
+  { path: 'admin', component: Admin },
+  { path: 'stats', component: Stats }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarMenu,
+    MyActivity,
+    Lost,
+    Found,
+    Admin,
+    Stats
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatSidenavModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatToolbarModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
