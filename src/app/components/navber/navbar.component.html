@@ -5,7 +5,7 @@
                 <img class="profilePic"/>
             </mat-toolbar-row>
             <mat-toolbar-row>    
-                <h3>{{user.username}}</h3>
+                <h3>{{user.fullName}}</h3>
             </mat-toolbar-row>
         </div>
     </mat-toolbar>
@@ -14,8 +14,8 @@
         <a mat-list-item routerLink="/my-activity">הפעילות שלי</a>
         <a mat-list-item routerLink="/lost">אבידות</a>
         <a mat-list-item routerLink="/found">מציאות</a>
-        <mat-divider *ngIf="user.isAdmin"></mat-divider>
-        <a *ngIf="user.isAdmin" mat-list-item routerLink="/admin">ניהול</a>
-        <a *ngIf="user.isAdmin" mat-list-item routerLink="/stats">סטטיסטיקות</a>
+        <mat-divider *ngIf="user.admin"></mat-divider>
+        <a *ngIf="user.admin" mat-list-item routerLink="/admin">ניהול</a>
+        <a *ngIf="user.admin" mat-list-item routerLink="/stats">סטטיסטיקות</a>
     </mat-nav-list>
 </div>

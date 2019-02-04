@@ -5,6 +5,8 @@ import {MatSidenavModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import UserService from './services/user.service';
 
 import { AppComponent } from './app.component';
 import { NavbarMenu } from './components/navber/navbar.component';
@@ -38,12 +40,13 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatListModule,
     MatToolbarModule,
+    HttpModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
