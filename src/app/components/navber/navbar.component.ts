@@ -19,7 +19,7 @@ export class NavbarMenu implements OnInit {
   }
 
   public loadUser() {
-    this.userServ.getUserByUsernameAndPassword("AT", "Bb123456").subscribe(
+    this.userServ.getUserByUsernameAndPassword("liort", "1122").subscribe(
       res => { this.user = res.user }
     )
   }
