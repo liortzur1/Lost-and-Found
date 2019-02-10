@@ -1,0 +1,32 @@
+.profilePage {
+    margin-right: 4em;
+}
+
+.profileEdit {
+    height: 32em;
+    width: 20em;
+}
+
+.profileDetails {
+    height: 23em;
+    width: 17em;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.editButtons {
+    width: 12em;
+    margin-right: 7em;
+    margin-top: 1em;
+}
+
+.editBut {
+    margin-right: 1em;
+    background-color: rgb(168, 204, 250);
+    border-radius: 10em;
+}
+
+.cancelBut {
+    background-color: rgb(253, 142, 142);
+    border-radius: 10em;
+}

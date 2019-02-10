@@ -4,7 +4,7 @@ const user = require('../models/user');
 
 // GET HTTP method to /users
 router.get('/',(req,res) => {
-    user.getAllUsers((err, users)=> {
+    user.getAllUsers((err, users) => {
         if(err) {
             res.json({success:false, message: `Failed to load all users. Error: ${err}`});
         }
@@ -15,9 +15,9 @@ router.get('/',(req,res) => {
     });
 });
 
-// GET HTTP method to /users/:username/:password
-router.get('/:username/:password',(req,res) => {
-    user.getUserByUsernameAndPassword(req.params.username, req.params.password,(err, user)=> {
+// GET HTTP method to /users/:mail/:password
+router.get('/:mail/:password',(req,res) => {
+    user.getUserByMailAndPassword(req.params.mail, req.params.password,(err, user)=> {
         if(err) {
             res.json({success:false, message: `Failed to find user. Error: ${err}`});
         }
@@ -30,23 +30,21 @@ router.get('/:username/:password',(req,res) => {
 
 //POST HTTP method to /users
 router.post('/', (req,res,next) => {
-    let newUser = new user({
-        username: req.body.username,
+    let newUser = {
         password: req.body.password,
         fullName: req.body.fullName,
         mail: req.body.mail,
         phone: req.body.phone,
         city: req.body.city,
         admin: req.body.admin
-    });
-    user.addUser(newUser,(err, newUser) => {
+    };
+    
+    user.editUser(newUser,(err, newUser) => {
         if(err) {
             res.json({success: false, message: `Failed to create a new user. Error: ${err}. req: ${req}`});
-
+        } else {
+            res.json({success:true, message: `Added successfully: ${newUser}`});
         }
-        else
-            res.json({success:true, message: "Added successfully."});
-
     });
 });
 
@@ -66,5 +64,6 @@ router.delete('/:id', (req,res,next)=> {
             res.json({success:false});
     })
 });
+
 
 module.exports = router;

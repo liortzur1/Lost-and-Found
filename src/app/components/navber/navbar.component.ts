@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import UserService from '../../services/user.service';
-import { User } from '../../models/user';
+import { UserModel } from '../../models/user';
 
 @Component({
   selector: 'navbar-menu',
@@ -8,7 +8,8 @@ import { User } from '../../models/user';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarMenu implements OnInit {
-  private user: Object;
+  private user: UserModel;
+  private userString: string;
 
   constructor(private userServ: UserService) {
 
@@ -19,8 +20,11 @@ export class NavbarMenu implements OnInit {
   }
 
   public loadUser() {
-    this.userServ.getUserByUsernameAndPassword("AT", "Bb123456").subscribe(
-      res => { this.user = res.user }
-    )
+    this.userServ.getUserByMailAndPassword("Daniel@gmail.com", "Aa123456").subscribe(
+      res => { 
+        this.user = res.user;
+        this.userString = JSON.stringify(this.user);
+       }
+    );
   }
 }

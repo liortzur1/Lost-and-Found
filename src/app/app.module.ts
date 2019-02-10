@@ -1,9 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material/button';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import UserService from './services/user.service';
@@ -15,13 +19,15 @@ import { Lost } from './components/lost/lost.component';
 import { Found } from './components/found/found.component';
 import { Admin } from './components/admin/admin.component';
 import { Stats } from './components/stats/stats.component';
+import { User } from './components/user/user.component';
 
 const appRoutes: Routes = [
   { path: 'my-activity', component: MyActivity },
   { path: 'lost', component: Lost },
   { path: 'found', component: Found },
   { path: 'admin', component: Admin },
-  { path: 'stats', component: Stats }
+  { path: 'stats', component: Stats },
+  { path: 'user/:userDetails', component: User }
 ];
 
 @NgModule({
@@ -32,14 +38,19 @@ const appRoutes: Routes = [
     Lost,
     Found,
     Admin,
-    Stats
+    Stats,
+    User
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     MatSidenavModule,
     BrowserAnimationsModule,
     MatListModule,
     MatToolbarModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
     HttpModule,
     RouterModule.forRoot(
       appRoutes,

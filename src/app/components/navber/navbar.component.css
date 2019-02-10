@@ -18,3 +18,7 @@ mat-divider {
     width: 11em;
     margin-right: 1em;
 }
+
+mat-toolbar {
+    background: rgb(219, 217, 217);
+}

@@ -1,8 +1,7 @@
-import { User } from './../models/user';
+import { UserModel } from './../models/user';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { map } from "rxjs/operators";
-import { Observable } from 'rxjs';
 
 @Injectable()
 export default class UserService {
@@ -11,8 +10,15 @@ export default class UserService {
 
     private serverApi = 'http://localhost:3000/api';
 
-    public getUserByUsernameAndPassword(username: string, password: string) {
-        let URI = `${this.serverApi}/users/${username}/${password}`;
+    public getUserByMailAndPassword(mail: string, password: string) {
+        const URI = `${this.serverApi}/users/${mail}/${password}`;
         return this.http.get(URI).pipe(map(res => res.json()));
+    }
+
+    public editUser(user: UserModel) {
+        const URI = `${this.serverApi}/users`;
+        this.http.post(URI, user).subscribe(response => {
+          console.log(response);
+        });
     }
 }

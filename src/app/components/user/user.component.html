@@ -1,0 +1,32 @@
+<div class="profilePage">
+    <div>
+        <h1>פרופיל</h1>
+    </div>
+    <div class="profileEdit">
+        <div class="profileDetails">
+                <mat-form-field appearance="outline">
+                    <mat-label>שם מלא</mat-label>
+                    <input matInput placeholder="שם מלא" [(ngModel)]="userDetails.fullName">
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>מייל</mat-label>
+                    <input matInput placeholder="מייל" [(ngModel)]="userDetails.mail">
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>טלפון</mat-label>
+                    <input matInput placeholder="טלפון" [(ngModel)]="userDetails.phone">
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>עיר מגורים</mat-label>
+                    <input matInput placeholder="עיר מגורים" [(ngModel)]="userDetails.city">
+                </mat-form-field>
+        </div>
+        <div class="editButtons">
+            <button mat-flat-button class="cancelBut">ביטול</button>
+            <button mat-flat-button class="editBut" (click)="saveChanges()">שמירת שינויים</button>
+        </div>
+    </div>
+</div>
