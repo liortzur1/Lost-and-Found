@@ -15,6 +15,7 @@ import { Lost } from './components/lost/lost.component';
 import { Found } from './components/found/found.component';
 import { Admin } from './components/admin/admin.component';
 import { Stats } from './components/stats/stats.component';
+import { CreateItemComponent } from './components/Create-Item/create-item.component';;
 
 const appRoutes: Routes = [
   { path: 'my-activity', component: MyActivity },
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     Lost,
     Found,
     Admin,
-    Stats
+    Stats,
+    CreateItemComponent
   ],
   imports: [
     BrowserModule,
