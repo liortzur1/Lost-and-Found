@@ -1,3 +1,56 @@
-<p>
-  create-item works!
-</p>
+<div class="container">
+  <h2>אבידה או מציאה חדשה</h2>
+  <div>
+      <mat-form-field appearance="outline">
+        <mat-label>אבידה או מציאה?</mat-label>
+        <mat-select placeholder="אבידה או מציאה?">
+          <mat-option *ngFor="let kind of kinds" [value]="kind">
+            {{kind}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>שם החפץ</mat-label>
+      <input matInput placeholder="שם החפץ" name="name">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>תיאור החפץ</mat-label>
+      <textarea matInput name="description"></textarea>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>קטגוריה</mat-label>
+      <mat-select placeholder="קטגוריה">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+      <mat-form-field appearance="outline">
+        <mat-label>צבע</mat-label>
+        <input matInput placeholder="צבע" name="color">
+      </mat-form-field>
+  </div>
+  <div>
+      <mat-form-field appearance="outline">
+        <mat-label>מיקום</mat-label>
+        <input matInput placeholder="מיקום" name="location">
+      </mat-form-field>
+  </div>
+  <div>
+      <mat-form-field appearance="outline">
+        <mat-label>יום המקרה</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </div>
+    
+</div>

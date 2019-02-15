@@ -1,15 +1,15 @@
 import { Time } from '@angular/common';
 
 export interface Item {
-    id: number,
-    name: string,
-    description: string,
-    kind: Kind,
-    category: Category,
-    color: string,
-    create_time: Date,
-    location: string,
-    username: string
+    id: number;
+    name: string;
+    description: string;
+    kind: Kind;
+    category: Category;
+    color: string;
+    create_time: Date;
+    location: string;
+    username: string;
 
 }
 
