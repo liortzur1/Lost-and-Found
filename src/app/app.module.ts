@@ -14,7 +14,11 @@ import {
   MatCheckboxModule,
   MatSelectModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatPaginatorModule,
+  MatGridListModule
   
 
 } from '@angular/material';
@@ -26,7 +30,8 @@ import { Lost } from './components/lost/lost.component';
 import { Found } from './components/found/found.component';
 import { Admin } from './components/admin/admin.component';
 import { Stats } from './components/stats/stats.component';
-import { CreateItemComponent } from './components/Create-Item/create-item.component';;
+import { CreateItemComponent, CreateItemDialogComponent } from './components/Create-Item/create-item.component';
+import { ListItemComponent } from './components/list-item/list-item.component';;
 
 const appRoutes: Routes = [
   { path: 'my-activity', component: MyActivity },
@@ -45,7 +50,9 @@ const appRoutes: Routes = [
     Found,
     Admin,
     Stats,
-    CreateItemComponent
+    CreateItemComponent,
+    CreateItemDialogComponent,
+    ListItemComponent
   ],
   imports: [
     BrowserModule,
@@ -64,9 +71,14 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatGridListModule
     
   ],
+  entryComponents: [CreateItemComponent, CreateItemDialogComponent],
   providers: [UserService],
   bootstrap: [AppComponent]
 })
