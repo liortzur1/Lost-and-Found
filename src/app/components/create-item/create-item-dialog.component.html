@@ -1,0 +1,81 @@
+<style>
+    mat-grid-tile div {
+      width: 100%; display: flex; align-items: flex-end;
+    }
+
+</style>
+
+<h2 mat-dialog-title>דווח על אבידה או מציאה</h2>
+<mat-dialog-content>
+  <mat-grid-list cols="3" rowHeight="3:1">
+    <mat-grid-tile>
+      <div>
+          <mat-form-field appearance="outline">
+            <mat-label>אבידה או מציאה?</mat-label>
+            <mat-select placeholder="אבידה או מציאה?">
+              <mat-option *ngFor="let kind of kinds" [value]="kind">
+                {{kind}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>שם החפץ</mat-label>
+          <input matInput placeholder="שם החפץ" name="name">
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>קטגוריה</mat-label>
+          <mat-select placeholder="קטגוריה">
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{category}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+          <mat-form-field appearance="outline">
+            <mat-label>צבע</mat-label>
+            <input matInput placeholder="צבע" name="color">
+          </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+          <mat-form-field appearance="outline">
+            <mat-label>מיקום</mat-label>
+            <input matInput placeholder="מיקום" name="location">
+          </mat-form-field>
+      </div>
+    </mat-grid-tile>
+  <mat-grid-tile>
+    <div>
+        <mat-form-field appearance="outline">
+          <mat-label>יום המקרה</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="create_date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+  </mat-grid-tile>
+  </mat-grid-list> 
+  <div>
+      <mat-form-field appearance="outline" style="width: 40%">
+        <mat-label>פרט כאן</mat-label>
+        <textarea matInput name="description" rows=5 ></textarea>
+      </mat-form-field>
+    </div>      
+</mat-dialog-content>
+<mat-dialog-actions >
+    <button mat-button mat-dialog-close>ביטול</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>צור</button>
+</mat-dialog-actions>
+      
