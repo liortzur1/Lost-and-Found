@@ -5,7 +5,6 @@ import { IterableChangeRecord_ } from '@angular/core/src/change_detection/differ
 import { namespaceHTML } from '@angular/core/src/render3';
 import { getLocaleEraNames } from '@angular/common';
 import { keyframes } from '@angular/animations';
-import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-create-item',
