@@ -31,7 +31,8 @@ import { Found } from './components/found/found.component';
 import { Admin } from './components/admin/admin.component';
 import { Stats } from './components/stats/stats.component';
 import { CreateItemComponent, CreateItemDialogComponent } from './components/Create-Item/create-item.component';
-import { ListItemComponent } from './components/list-item/list-item.component';;
+import { ListItemComponent } from './components/list-item/list-item.component';
+import { SearchItemsComponent } from './components/search-items/search-items.component';;
 
 const appRoutes: Routes = [
   { path: 'my-activity', component: MyActivity },
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
     Stats,
     CreateItemComponent,
     CreateItemDialogComponent,
-    ListItemComponent
+    ListItemComponent,
+    SearchItemsComponent
   ],
   imports: [
     BrowserModule,
