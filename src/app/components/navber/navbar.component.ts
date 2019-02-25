@@ -12,7 +12,10 @@ export class NavbarMenu implements OnInit {
   private userString: string;
 
   constructor(private userServ: UserService) {
-
+    this.userServ.User.subscribe(val => {
+      this.user = val;
+      this.userString = JSON.stringify(this.user);
+    })
   }
 
   ngOnInit() {

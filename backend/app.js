@@ -1,5 +1,7 @@
 const path = require("path");
-const express = require("express");
+const app = require("express")();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require('cors');
@@ -8,8 +10,6 @@ const users = require('./controllers/users');
 
 // Connect mongoose to our database
 mongoose.connect(config.database);
-
-const app = express();
 
 //Declaring Port
 const port = 3000;
@@ -26,13 +26,18 @@ app.use(bodyParser.json());
 */
 app.use('/api/users', users);
 
-
-// Starting page
-app.use(express.static(path.join(__dirname, 'dist/LostAndFound')));
-
 app.use((req,res,next) => {
     res.sendFile(path.join(__dirname,"dist/LostAndFound",index.html));
-})
+});
+
+io.on('connection', function(socket){
+  let previous;
+  const safeJoin = current => {
+    socket.leave(previous);
+    socket.join(current);
+    previous = current;
+  };
+});
 
 //Listen to port 3000
 app.listen(port, () => {

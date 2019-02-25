@@ -7,9 +7,12 @@ import {MatListModule} from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
+import {MatDialogModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
 import UserService from './services/user.service';
 
 import { AppComponent } from './app.component';
@@ -19,7 +22,7 @@ import { Lost } from './components/lost/lost.component';
 import { Found } from './components/found/found.component';
 import { Admin } from './components/admin/admin.component';
 import { Stats } from './components/stats/stats.component';
-import { User } from './components/user/user.component';
+import { User, DialogContent } from './components/user/user.component';
 
 const appRoutes: Routes = [
   { path: 'my-activity', component: MyActivity },
@@ -30,6 +33,8 @@ const appRoutes: Routes = [
   { path: 'user/:userDetails', component: User }
 ];
 
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +44,8 @@ const appRoutes: Routes = [
     Found,
     Admin,
     Stats,
-    User
+    User,
+    DialogContent
   ],
   imports: [
     BrowserModule,
@@ -50,14 +56,17 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
     MatFormFieldModule,
     HttpModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    SocketIoModule.forRoot(config)
   ],
   providers: [UserService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogContent]
 })
 export class AppModule { }
