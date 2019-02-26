@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Item, Kind, Category } from 'src/app/models/item'
 import { fadeInItems } from '@angular/material';
+import {ItemService} from '../../services/item.service'
+import {Subscription} from 'rxjs'
 
 @Component({
   selector: 'app-list-item',
@@ -8,34 +10,18 @@ import { fadeInItems } from '@angular/material';
   styleUrls: ['./list-item.component.css']
 })
 export class ListItemComponent implements OnInit {
+  @Input() scope_kind:Kind;
 
-  items: Item[] = [
-    { 
-      id: 12,
-      name: "MacBook Air 13.3",
-      description: "lala",
-      kind: Kind.Lost,
-      category: Category.Laptops,
-      color: "silver",
-      create_time: new Date(),
-      location: "tlv",
-      username: "liortzur"},
-  
-      { 
-        id: 14,
-        name: "iPhone X",
-        description: "bobobo",
-        kind: Kind.Lost,
-        category: Category.Phones,
-        color: "balck",
-        create_time: new Date(),
-        location: "beeri",
-        username: "liortzur"}
-  ];
+  items: Item[];
+  private itemsSub: Subscription;
 
-  constructor() { }
+  constructor(public itemService: ItemService) {
+    
+   }
 
   ngOnInit() {
+    this.items = this.itemService.getItemsByKind(this.scope_kind);
+    this.itemsSub = this.itemService.getItemsUpdatelistener().subscribe((items:Item[]) => {this.items = items});
   }
 
   get itemsLenght()
