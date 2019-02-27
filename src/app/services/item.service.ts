@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Item, Kind, Category } from 'src/app/models/item'
 import { Subject } from 'rxjs';
+import { map } from "rxjs/operators";
+import { Http } from '@angular/http';
 
 @Injectable({providedIn: 'root'})
 
@@ -41,10 +43,14 @@ export class ItemService {
       ];
 
       private itemsUpdate = new Subject<Item[]>();
+      private serverApi = 'http://localhost:3000/api';
 
-
-    getItems(){
-        return [...this.items];
+      constructor(private http: Http) { }
+    
+      getItems(){
+        let URI = `${this.serverApi}/items`;
+        return this.http.get(URI).pipe(map(res => res.json()));
+        //return this.http.get(URI).subscribe(res => {this.items = res.items});
     }
 
     getItemsByKind(kind: Kind){

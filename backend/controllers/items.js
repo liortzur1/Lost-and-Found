@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const user = require('../models/user');
+const item = require('../models/item');
 
 // GET HTTP method to /users
 router.get('/',(req,res) => {
-    user.getAllUsers((err, users)=> {
+    item.getAllItems((err, items)=> {
         if(err) {
-            res.json({success:false, message: `Failed to load all users. Error: ${err}`});
+            res.json({success:false, message: `Failed to load all items. Error: ${err}`});
         }
         else {
-            res.write(JSON.stringify({success: true, users:users},null,2));
+            res.write(JSON.stringify({success: true, items:items},null,2));
             res.end();
         }
     });
 });
-
+/*
 // GET HTTP method to /users/:username/:password
 router.get('/:username/:password',(req,res) => {
     user.getUserByUsernameAndPassword(req.params.username, req.params.password,(err, user)=> {
@@ -26,22 +26,23 @@ router.get('/:username/:password',(req,res) => {
             res.end();
         }
     });
-});
+});*/
 
 //POST HTTP method to /users
 router.post('/', (req,res,next) => {
-    let newUser = new user({
-        username: req.body.username,
-        password: req.body.password,
-        fullName: req.body.fullName,
-        mail: req.body.mail,
-        phone: req.body.phone,
-        city: req.body.city,
-        admin: req.body.admin
+    let newItem = new item({
+        name: req.body.name,
+        description: req.body.description,
+        kind: req.body.kind,
+        category: req.body.category,
+        color: req.body.color,
+        create_time: req.body.create_time,
+        location: req.body.location,
+        username: req.body.username
     });
-    user.addUser(newUser,(err, newUser) => {
+    item.addItem(newItem,(err, newItem) => {
         if(err) {
-            res.json({success: false, message: `Failed to create a new user. Error: ${err}. req: ${req}`});
+            res.json({success: false, message: `Failed to create a new item. Error: ${err}. req: ${req}`});
 
         }
         else
@@ -49,7 +50,7 @@ router.post('/', (req,res,next) => {
 
     });
 });
-
+/*
 //DELETE HTTP method to /Users. Here, we pass in a param which is the object id.
 router.delete('/:id', (req,res,next)=> {
   //access the parameter which is the id of the item to be deleted
@@ -65,6 +66,6 @@ router.delete('/:id', (req,res,next)=> {
         else
             res.json({success:false});
     })
-});
+});*/
 
 module.exports = router;

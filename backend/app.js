@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const config = require('./config/database');
 const users = require('./controllers/users');
+const items = require('./controllers/items');
 
 // Connect mongoose to our database
 mongoose.connect(config.database);
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
  We are telling express server public folder is the place to look for the static files
 */
 app.use('/api/users', users);
+app.use('/api/items', items);
 
 
 // Starting page
