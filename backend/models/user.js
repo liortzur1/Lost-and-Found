@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const item = require('./item');
 const userSchema = Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -17,7 +18,16 @@ const userSchema = Schema({
 
 const usersList = module.exports = mongoose.model("user", userSchema);
 
-module.exports.getAllUsers = (callback) => usersList.find().populate("items").exec(callback);
+
+module.exports.getAllUsers = (callback) => usersList.find().populate(
+  {
+    path: 'items',
+    populate: {
+      path: 'category',
+      model: 'category'
+    }
+  }
+).exec(callback);
 
 module.exports.getUserByUsernameAndPassword = (username, password, callback) => {
   let query = { username: username, password: password };
@@ -28,5 +38,29 @@ module.exports.addUser = (newUser, callback) => newUser.save(callback);
 
 //TODO: remove all users' items
 module.exports.deleteUserByUsername = (username, callback) => {
-  usersList.remove({ username }, callback);
+  usersList.findOne({ username }, (err, user) => {
+    if (err) {
+      console.error(err);
+    }
+    else {
+      //TODO: fix removing all items by refrences
+      user.items.forEach(currentItem => {
+        item.remove({ _id: currentItem._id });
+      })
+      usersList.remove({ username }, callback);
+    }
+  })
+}
+
+module.exports.addItemToUser = (item, username, callback) => {
+  usersList.findOne({ username }, (err, user) => {
+    if (err || !user || !user.items) {
+      console.error(err);
+      callback(err);
+    }
+    else {
+      user.items.push(item);
+      user.save(callback);
+    }
+  })
 }

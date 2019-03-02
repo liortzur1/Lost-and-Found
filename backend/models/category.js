@@ -6,3 +6,15 @@ const categorySchema = Schema({
 });
 
 const categoriesList = module.exports = mongoose.model("category", categorySchema);
+module.exports.getCategoryByName = (name) => {
+    return new Promise((resolve, reject) => {
+        categoriesList.findOne({ name }, (err, category) => {
+            if (err) {
+                reject(new Error(err));
+            }
+            else {
+                resolve(category);
+            }
+        });
+    });
+};

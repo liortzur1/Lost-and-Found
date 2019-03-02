@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const category = require("./category");
 const itemSchema = Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
@@ -14,9 +13,3 @@ const itemSchema = Schema({
 const itemsList = module.exports = mongoose.model("item", itemSchema);
 
 module.exports.getAllItems = (callback) => itemsList.find().populate("category").exec(callback);
-module.exports.addItem = (newItem, callback) => {
-  category.findOne({ name: newItem.category }, (err, category) => {
-    newItem.category = category;
-    newItem.save(callback);
-  })
-}
