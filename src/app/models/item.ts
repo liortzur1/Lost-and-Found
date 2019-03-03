@@ -1,6 +1,4 @@
-import { Time } from '@angular/common';
-
-export interface Item {
+export class Item {
     id: number;
     name: string;
     description: string;

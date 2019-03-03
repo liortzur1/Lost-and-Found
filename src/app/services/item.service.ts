@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Item, Kind, Category } from 'src/app/models/item'
 import { Subject } from 'rxjs';
 import { map } from "rxjs/operators";
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 @Injectable({providedIn: 'root'})
 
@@ -77,6 +77,23 @@ export class ItemService {
               username: "liortzur"}
           ];
         this.itemsUpdate.next([...item])
+    }
+
+    createItem(newItem:Item){
+        var headers = new Headers();
+        let URI = `${this.serverApi}/items`;
+        headers.append('Content-type', 'application/json');
+        this.http.post(URI, JSON.stringify(newItem),{ headers: headers }).subscribe(
+            data  => {
+            console.log("POST Request is successful ", data);
+            },
+            error  => {
+            
+            console.log("Error", error);
+            
+            }
+            
+            );
     }
 
 }

@@ -4,16 +4,16 @@
     }
 
 </style>
-
+<form (ngSubmit)="onSubmit()" #createForm="ngForm">
 <h2 mat-dialog-title>דווח על אבידה או מציאה</h2>
 <mat-dialog-content>
-  <mat-grid-list cols="3" rowHeight="3:1">
+  <mat-grid-list cols="3" rowHeight="3:1">  
     <mat-grid-tile>
       <div>
           <mat-form-field appearance="outline">
             <mat-label>אבידה או מציאה?</mat-label>
-            <mat-select placeholder="אבידה או מציאה?">
-              <mat-option *ngFor="let kind of kinds" [value]="kind">
+            <mat-select placeholder="אבידה או מציאה?" name="kind" [(ngModel)]="item.kind">
+              <mat-option *ngFor="let kind of kinds" [value]="kind" required>
                 {{kind}}
               </mat-option>
             </mat-select>
@@ -24,7 +24,7 @@
       <div>
         <mat-form-field appearance="outline">
           <mat-label>שם החפץ</mat-label>
-          <input matInput placeholder="שם החפץ" name="name">
+          <input matInput placeholder="שם החפץ" name="name" [(ngModel)]="item.name" required>
         </mat-form-field>
       </div>
     </mat-grid-tile>
@@ -32,7 +32,7 @@
       <div>
         <mat-form-field appearance="outline">
           <mat-label>קטגוריה</mat-label>
-          <mat-select placeholder="קטגוריה">
+          <mat-select placeholder="קטגוריה" name="category" [(ngModel)]="item.category" required>
             <mat-option *ngFor="let category of categories" [value]="category">
               {{category}}
             </mat-option>
@@ -44,7 +44,7 @@
       <div>
           <mat-form-field appearance="outline">
             <mat-label>צבע</mat-label>
-            <input matInput placeholder="צבע" name="color">
+            <input matInput placeholder="צבע" name="color" [(ngModel)]="item.color" required>
           </mat-form-field>
       </div>
     </mat-grid-tile>
@@ -52,7 +52,7 @@
       <div>
           <mat-form-field appearance="outline">
             <mat-label>מיקום</mat-label>
-            <input matInput placeholder="מיקום" name="location">
+            <input matInput placeholder="מיקום" name="location" [(ngModel)]="item.location" required>
           </mat-form-field>
       </div>
     </mat-grid-tile>
@@ -60,7 +60,7 @@
     <div>
         <mat-form-field appearance="outline">
           <mat-label>יום המקרה</mat-label>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="create_date">
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="create_time" [(ngModel)]="item.create_time" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -70,12 +70,13 @@
   <div>
       <mat-form-field appearance="outline" style="width: 40%">
         <mat-label>פרט כאן</mat-label>
-        <textarea matInput name="description" rows=5 ></textarea>
+        <textarea matInput name="description" rows=5 [(ngModel)]="item.description"></textarea>
       </mat-form-field>
     </div>      
 </mat-dialog-content>
 <mat-dialog-actions >
     <button mat-button mat-dialog-close>ביטול</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>צור</button>
+    <button type="submit" mat-button cdkFocusInitial>צור</button>
 </mat-dialog-actions>
+</form>
       

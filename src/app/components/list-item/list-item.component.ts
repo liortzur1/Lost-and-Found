@@ -20,13 +20,25 @@ export class ListItemComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.items = this.itemService.getItemsByKind(this.scope_kind);
+    this.itemService.getItems().subscribe(res => { this.items = res.items });
     this.itemsSub = this.itemService.getItemsUpdatelistener().subscribe((items:Item[]) => {this.items = items});
   }
 
   get itemsLenght()
   {
     return this.items.length;
+  }
+
+  itemDate(date:string)
+  {
+    let formatted = new Date (date);
+    return formatted.toLocaleDateString();
+  }
+
+  usernameById(user:string)
+  {
+    // TODO: query for user display name by ID
+    return "Lior Tzur"
   }
 
 }

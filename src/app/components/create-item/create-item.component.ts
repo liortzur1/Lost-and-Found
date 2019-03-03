@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { Item, Kind, Category } from 'src/app/models/item'
 import {MatDialog} from '@angular/material';
+import {ItemService} from '../../services/item.service'
 import { IterableChangeRecord_ } from '@angular/core/src/change_detection/differs/default_iterable_differ';
 import { namespaceHTML } from '@angular/core/src/render3';
 import { getLocaleEraNames } from '@angular/common';
@@ -30,22 +31,19 @@ export class CreateItemComponent {
 })
 export class CreateItemDialogComponent {
 
-  item: Item = { 
-    id: 12,
-    name: "MacBook Air 13.3",
-    description: "lala",
-    kind: Kind.Found,
-    category: Category.Laptops,
-    color: "silver",
-    create_time: new Date(),
-    location: "tlv",
-    username: "liortzur",};
-
-    keys = Object.keys(Category);
+  public item = new Item();
 
 
-  constructor() { }
 
+  constructor(public itemService: ItemService) { }
+
+  onSubmit()
+  {
+    this.item.username = "5c5b0138c4b83825e480744f"; // TODO: logged in user id
+    this.itemService.createItem(this.item);
+    
+  }
+  
   get categories()
   {
 
@@ -54,7 +52,6 @@ export class CreateItemDialogComponent {
 
   get kinds()
   {
-
     return Object.keys(Kind);
   }
 

@@ -25,7 +25,8 @@ router.post('/', (req, res, next) => {
             category: category,//await category.getCategoryByName(req.body.category),
             color: req.body.color,
             createTime: req.body.create_time,
-            location: req.body.location
+            location: req.body.location,
+            username: req.body.username
         });
         let username = req.body.username;
         newItem.save(err => {

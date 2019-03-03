@@ -7,7 +7,8 @@ const itemSchema = Schema({
   category: { type: Schema.Types.ObjectId, ref: "category", required: true },
   color: { type: String, required: true },
   createTime: { type: Date, required: true },
-  location: { type: String, require: true }
+  location: { type: String, require: true },
+  username: { type: Schema.Types.ObjectId, ref: "user", required: true }
 });
 
 const itemsList = module.exports = mongoose.model("item", itemSchema);

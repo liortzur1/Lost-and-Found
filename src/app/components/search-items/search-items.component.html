@@ -23,7 +23,7 @@
   <mat-grid-tile>
     <mat-form-field appearance="outline">
       <mat-label>Time of incident</mat-label>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="create_date" [(ngModel)]="item.create_time">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="create_time" [(ngModel)]="item.create_time">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
