@@ -49,13 +49,40 @@ router.post('/', (req, res, next) => {
     })
 });
 
-//TODO: check if works
+router.put('/:id', (req, res) => {
+    item.findById({_id: req.params.id}, (err, result) => {
+        if (err) {
+            res.json({ success: false, message: `Failed to find item to update. Error: ${err}` });
+        }
+        else {
+            var cat = category.getCategoryByName(req.body.category);
+            result.name = req.body.name;
+            result.description = req.body.description;
+            //result.category = cat;
+            result.color = req.body.color;
+            result.createTime = req.body.create_time;
+            result.location = req.body.location;
+            console.log(result);
+            console.log(cat);
+            result.save(err => {
+                if (err) {
+                    res.json({ success: false, message: `Failed to save updated item. Error: ${err}` });
+                }
+                else {
+                    res.json({ success: true, message: "Item updated successfully." });
+                }
+            })
+        }
+    })
+})
+
+//TODO: valadition (?) - if the items belogns to the user
 router.delete('/:id', (req, res) => {
     item.deleteOne({ _id: req.params.id }, err => {
         if (err)
-            res.sendStatus(500);
+            res.json({ success: false, message: `Failed to delete item. Error: ${err}` });
         else
-            res.status(200);
+            res.sendStatus(200);
     });
 });
 
