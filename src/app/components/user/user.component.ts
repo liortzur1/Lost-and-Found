@@ -1,3 +1,4 @@
+import { Globals } from './../utils/Globals';
 import { UserModel } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from "@angular/router";
@@ -15,22 +16,19 @@ export class User implements OnInit {
 
     constructor (public route: ActivatedRoute,
                  private userServ: UserService,
-                 public dialog: MatDialog) {
+                 public dialog: MatDialog,
+                 private globals: Globals) {
     }
 
     ngOnInit (){
-        this.route.paramMap.subscribe((paramMap: ParamMap) => {
-            if (paramMap.has("userDetails")) {
-                this.userDetails = JSON.parse(paramMap.get("userDetails"));
-                Object.assign(this.userDetailsPrev, this.userDetails);
-            }
-        })
+        this.userDetails = this.globals.connectedUser;
+        Object.assign(this.userDetailsPrev, this.userDetails);
     }
 
     saveChanges() {
-        this.userServ.editUser(this.userDetails);
+        this.userServ.CreateOrUpdateUser(this.userDetails);
         Object.assign(this.userDetailsPrev, this.userDetails);
-        const dialogRef = this.dialog.open(DialogContent);
+        const dialogRef = this.dialog.open(EditUserDialogContent);
 
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
@@ -48,4 +46,4 @@ export class User implements OnInit {
     templateUrl: 'dialog-content.html',
   })
 
-  export class DialogContent {}
+  export class EditUserDialogContent {}

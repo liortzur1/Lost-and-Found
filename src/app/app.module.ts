@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { NgModule, Component } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
@@ -9,47 +9,30 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {MatDialogModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
-import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+import { Globals } from './components/utils/Globals';
+import { RoutingModule } from './app.routing';
 import UserService from './services/user.service';
 
 import { AppComponent } from './app.component';
-import { NavbarMenu } from './components/navber/navbar.component';
-import { MyActivity } from './components/my-activity/my-activity.component';
-import { Lost } from './components/lost/lost.component';
-import { Found } from './components/found/found.component';
-import { Admin } from './components/admin/admin.component';
-import { Stats } from './components/stats/stats.component';
-import { User, DialogContent } from './components/user/user.component';
-
-const appRoutes: Routes = [
-  { path: 'my-activity', component: MyActivity },
-  { path: 'lost', component: Lost },
-  { path: 'found', component: Found },
-  { path: 'admin', component: Admin },
-  { path: 'stats', component: Stats },
-  { path: 'user/:userDetails', component: User }
-];
-
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+import { User, EditUserDialogContent } from './components/user/user.component';
+import { Login } from './components/login/login.component';
+import { Home } from './components/home/home.component';
+import { SignUp } from './components/sign-up/sign-up.component';
+import { NeedAuthGuard} from './components/utils/NeedAuthGuard';
+import { HomeModule } from './components/home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarMenu,
-    MyActivity,
-    Lost,
-    Found,
-    Admin,
-    Stats,
-    User,
-    DialogContent
+    Login,
+    SignUp
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     BrowserAnimationsModule,
     MatListModule,
@@ -59,14 +42,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatDialogModule,
     MatFormFieldModule,
     HttpModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
-    SocketIoModule.forRoot(config)
+    RoutingModule,
+    HomeModule
   ],
-  providers: [UserService],
-  bootstrap: [AppComponent],
-  entryComponents: [DialogContent]
+  providers: [UserService, NeedAuthGuard, Globals],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

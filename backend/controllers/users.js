@@ -49,11 +49,12 @@ router.post('/', (req,res,next) => {
 });
 
 //DELETE HTTP method to /Users. Here, we pass in a param which is the object id.
-router.delete('/:id', (req,res,next)=> {
+router.delete('/', (req,res,next)=> {
   //access the parameter which is the id of the item to be deleted
-    let id = req.params.id;
+    let mails = req.body.mails;
   //Call the model method deleteUserById
-    user.deleteUserById(id,(err,currUser) => {
+  mails.forEach(mail => {
+    user.deleteUserByMail(mail,(err,currUser) => {
         if(err) {
             res.json({success:false, message: `Failed to delete the user. Error: ${err}`});
         }
@@ -62,8 +63,10 @@ router.delete('/:id', (req,res,next)=> {
         }
         else
             res.json({success:false});
-    })
-});
+        })
+    });    
+  });  
+  
 
 
 module.exports = router;

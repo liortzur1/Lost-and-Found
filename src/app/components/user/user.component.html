@@ -1,32 +1,29 @@
 <div class="profilePage">
     <div>
-        <h1>פרופיל</h1>
+        <h1>Profile</h1>
     </div>
     <div class="profileEdit">
         <div class="profileDetails">
                 <mat-form-field appearance="outline">
-                    <mat-label>שם מלא</mat-label>
-                    <input matInput placeholder="שם מלא" [(ngModel)]="userDetails.fullName">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput [(ngModel)]="userDetails.fullName">
                 </mat-form-field>
-                <br>
                 <mat-form-field appearance="outline">
-                    <mat-label>מייל</mat-label>
-                    <input matInput placeholder="מייל" [(ngModel)]="userDetails.mail">
+                    <mat-label>Mail</mat-label>
+                    <input matInput [(ngModel)]="userDetails.mail">
                 </mat-form-field>
-                <br>
                 <mat-form-field appearance="outline">
-                    <mat-label>טלפון</mat-label>
-                    <input matInput placeholder="טלפון" [(ngModel)]="userDetails.phone">
+                    <mat-label>Phone</mat-label>
+                    <input matInput [(ngModel)]="userDetails.phone">
                 </mat-form-field>
-                <br>
                 <mat-form-field appearance="outline">
-                    <mat-label>עיר מגורים</mat-label>
-                    <input matInput placeholder="עיר מגורים" [(ngModel)]="userDetails.city">
+                    <mat-label>City</mat-label>
+                    <input matInput [(ngModel)]="userDetails.city">
                 </mat-form-field>
         </div>
         <div class="editButtons">
-            <button mat-flat-button class="cancelBut" (click)="cancelChanges()">ביטול</button>
-            <button mat-flat-button class="editBut" (click)="saveChanges()">שמירת שינויים</button>
+            <button mat-flat-button class="cancelBut" (click)="cancelChanges()">Cancel</button>
+            <button mat-flat-button class="editBut" (click)="saveChanges()">Save</button>
         </div>
     </div>
 </div>

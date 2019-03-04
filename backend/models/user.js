@@ -22,7 +22,7 @@ module.exports.editUser = (editedUser, callback) => usersList.findOneAndUpdate({
 
 module.exports.addUser = (newUser, callback) => newUser.save(callback);
 
-module.exports.deleteUserById = (id, callback) => {
-  let query = {_id: id};
+module.exports.deleteUserByMail = (mail, callback) => {
+  let query = {mail: mail};
   usersList.remove(query, callback);
 }

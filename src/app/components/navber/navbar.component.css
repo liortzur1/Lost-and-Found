@@ -4,7 +4,7 @@ mat-divider {
 
 .navbar-header {
     margin-top: 1em;
-    margin-right: 0.5em;
+    margin-left: 0.5em;
 }
 
 .profilePic {
@@ -16,7 +16,7 @@ mat-divider {
 
 .navbar {
     width: 11em;
-    margin-right: 1em;
+    margin-left: 1em;
 }
 
 mat-toolbar {

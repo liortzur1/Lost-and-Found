@@ -1,3 +1,4 @@
+import { User } from './../components/user/user.component';
 import { UserModel } from './../models/user';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
@@ -12,17 +13,28 @@ export default class UserService {
     constructor(private http: Http) { 
 
     }
-        private serverApi = 'http://localhost:3000/api';
+    
+    private serverApi = 'http://localhost:3000/api';
 
-        public getUserByMailAndPassword(mail: string, password: string) {
-            const URI = `${this.serverApi}/users/${mail}/${password}`;
-            return this.http.get(URI).pipe(map(res => res.json()));
-        }
+    public getUserByMailAndPassword(mail: string, password: string) {
+        const URI = `${this.serverApi}/users/${mail}/${password}`;
+        return this.http.get(URI).pipe(map(res => res.json()));
+    }
 
-        editUser(user: UserModel) {
-            const URI = `${this.serverApi}/users`;
-            this.http.post(URI, user).subscribe(response => {
-                this.User.next(user);
-            });
-        }
+    CreateOrUpdateUser(user: UserModel) {
+        const URI = `${this.serverApi}/users`;
+        this.http.post(URI, user).subscribe(response => {
+            this.User.next(user);
+        });
+    }
+
+    public getAllUsers() {
+        const URI = `${this.serverApi}/users`;
+        return this.http.get(URI).pipe(map(res => res.json()));
+    }
+
+    public deleteUsers(usersToDelete) {
+        const URI = `${this.serverApi}/users`;
+        return this.http.delete(URI, { body: {mails: usersToDelete}} ).pipe(map(res => res.json));
+    }
 }
