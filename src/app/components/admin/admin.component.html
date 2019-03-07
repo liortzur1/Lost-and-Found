@@ -1,15 +1,17 @@
-<div class="formDiv">    
-    <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="labels">
-            <label formArrayName="users" *ngFor="let user of form.controls.users.controls; let i = index">
-                <mat-checkbox [formControlName]="i">
-                {{users[i].fullName}}
-                </mat-checkbox>
-            </label>
-        </div>
-        <div class="btnLine">
-            <button class="btnRemove" mat-flat-button color="warn" [disabled]="!form.valid">Remove</button>
-        </div>
-    </form>
+<div class="adminDiv" >
+    <div class="formDiv">    
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="labels">
+                <label formArrayName="users" *ngFor="let user of form.controls.users.controls; let i = index">
+                    <mat-checkbox [formControlName]="i">
+                    {{users[i].fullName}}
+                    </mat-checkbox>
+                </label>
+            </div>
+            <div class="btnLine">
+                <button class="btnRemove" mat-flat-button color="warn" [disabled]="!form.valid">Remove</button>
+            </div>
+        </form>
+    </div>
 </div>
       

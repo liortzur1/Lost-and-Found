@@ -22,8 +22,7 @@ import { MatDialogModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpModule } from '@angular/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-import { homeRoutingModule } from './home-routing.module';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [
@@ -40,7 +39,10 @@ import { homeRoutingModule } from './home-routing.module';
     MatFormFieldModule,
     HttpModule,
     MatCheckboxModule,
-    RouterModule
+    RouterModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDe2cx9NLqtDipMKZ1J2EeioMAn2W9L_20'
+    })
   ],
   exports: [
   ],
