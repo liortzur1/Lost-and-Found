@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const config = require('./config/database');
 const users = require('./controllers/users');
+const items = require('./controllers/items');
+const categories = require('./controllers/categories');
 
 // Connect mongoose to our database
 mongoose.connect(config.database);
@@ -18,30 +20,25 @@ const port = 3000;
 app.use(cors());
 
 // Middleware for bodyparsing using both json and urlencoding
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 /*express.static is a built in middleware function to serve static files.
  We are telling express server public folder is the place to look for the static files
 */
 app.use('/api/users', users);
+app.use('/api/items', items);
+app.use('/api/categories', categories);
 
-app.use((req,res,next) => {
-    res.sendFile(path.join(__dirname,"dist/LostAndFound",index.html));
-});
-
-io.on('connection', function(socket){
-  let previous;
-  const safeJoin = current => {
-    socket.leave(previous);
-    socket.join(current);
-    previous = current;
-  };
-});
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "dist/LostAndFound", index.html));
+})
 
 //Listen to port 3000
 app.listen(port, () => {
   console.log(`Starting the server at port ${port}`);
 });
+
+
 
 module.exports = app;

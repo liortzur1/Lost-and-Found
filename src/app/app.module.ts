@@ -1,19 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { NgModule, Component } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSidenavModule} from '@angular/material';
-import {MatListModule} from '@angular/material/list';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material';
-import {MatDialogModule } from '@angular/material';
-import {MatButtonModule} from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
-
 import { Globals } from './components/utils/Globals';
 import { RoutingModule } from './app.routing';
 import UserService from './services/user.service';
+import {
+  MatSidenavModule,
+  MatInputModule,
+  MatButtonModule,
+  MatCheckboxModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatPaginatorModule,
+  MatGridListModule,
+  MatToolbarModule,
+  MatListModule,
+  MatFormFieldModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { User, EditUserDialogContent } from './components/user/user.component';
@@ -42,6 +50,13 @@ import { HomeModule } from './components/home/home.module';
     MatDialogModule,
     MatFormFieldModule,
     HttpModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatGridListModule,
     RoutingModule,
     HomeModule
   ],

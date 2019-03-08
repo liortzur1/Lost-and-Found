@@ -9,7 +9,7 @@ router.get('/',(req,res) => {
             res.json({success:false, message: `Failed to load all users. Error: ${err}`});
         }
         else {
-            res.write(JSON.stringify({success: true, users:users},null,2));
+            res.write(JSON.stringify({ success: true, users: users }, null, 2));
             res.end();
         }
     });
@@ -22,7 +22,7 @@ router.get('/:mail/:password',(req,res) => {
             res.json({success:false, message: `Failed to find user. Error: ${err}`});
         }
         else {
-            res.write(JSON.stringify({success: true, user:user},null,2));
+            res.write(JSON.stringify({ success: true, user: user }, null, 2));
             res.end();
         }
     });
@@ -58,8 +58,8 @@ router.delete('/', (req,res,next)=> {
         if(err) {
             res.json({success:false, message: `Failed to delete the user. Error: ${err}`});
         }
-        else if(currUser) {
-            res.json({success:true, message: "Deleted successfully"});
+        else if (currUser) {
+            res.json({ success: true, message: "Deleted successfully" });
         }
         else
             res.json({success:false});

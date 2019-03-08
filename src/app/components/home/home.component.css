@@ -6,10 +6,11 @@
     right: 0;
     background: #eee;
     font-family: 'Alef';
+    width: 100%;
   }
 
   .sidenav {
-      width: 13em;
+      width: 15em;
       background: rgb(219, 217, 217);
-      border-left: 1px solid gray;
+      border-right: 1px solid gray;
   }

@@ -8,20 +8,32 @@ import { Stats } from '../stats/stats.component';
 import { User, EditUserDialogContent } from '../user/user.component';
 import { RouterModule, Routes } from '@angular/router';
 import { Home } from './home.component';
+import { CreateItemComponent, CreateItemDialogComponent } from '../Create-Item/create-item.component';
+import { ListItemComponent } from '../list-item/list-item.component';
+import { SearchItemsComponent } from '../search-items/search-items.component';
 import UserService from '../../services/user.service';
+
+import {
+  MatSidenavModule,
+  MatInputModule,
+  MatButtonModule,
+  MatCheckboxModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatPaginatorModule,
+  MatGridListModule,
+  MatToolbarModule,
+  MatListModule,
+  MatFormFieldModule
+} from '@angular/material';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSidenavModule } from '@angular/material';
-import { MatListModule } from '@angular/material/list';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material';
-import { MatDialogModule } from '@angular/material';
-import { MatButtonModule } from '@angular/material/button';
 import { HttpModule } from '@angular/http';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -37,6 +49,12 @@ import { AgmCoreModule } from '@agm/core';
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatGridListModule,
     HttpModule,
     MatCheckboxModule,
     RouterModule,
@@ -56,10 +74,14 @@ import { AgmCoreModule } from '@agm/core';
     User, 
     EditUserDialogContent,
     RemoveUserDialogContent,
-    Home
+    Home,
+    CreateItemComponent,
+    CreateItemDialogComponent,
+    ListItemComponent,
+    SearchItemsComponent
   ],
   providers: [UserService],
-  entryComponents: [EditUserDialogContent, RemoveUserDialogContent],
+  entryComponents: [EditUserDialogContent, RemoveUserDialogContent,CreateItemComponent, CreateItemDialogComponent],
   bootstrap: [Home]
 })
 export class HomeModule { }
