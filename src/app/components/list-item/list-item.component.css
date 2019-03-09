@@ -1,0 +1,31 @@
+mat-grid-tile div {
+    width: 100%; display: flex; align-items: flex-end;
+  }
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+td:first-child {
+  font-weight: bold
+}
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+#edit-btn {
+  text-align: left;
+}
+
+.divider{
+  width:10px;
+  height:auto;
+  display:inline-block;
+}

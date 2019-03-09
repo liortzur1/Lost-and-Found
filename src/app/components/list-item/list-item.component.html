@@ -1,0 +1,43 @@
+<mat-accordion multi="true" *ngIf="itemsLenght > 0">
+  <mat-expansion-panel *ngFor="let item of items">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{item.name}}</mat-panel-title>
+      <mat-panel-description>{{item.location}}</mat-panel-description>
+    </mat-expansion-panel-header>
+    <h4>Report details</h4>
+    <table>
+        <tr>
+            <td>Created by</td>
+            <td>{{usernameById(item.username)}}</td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>{{item.category.name}}</td>
+        </tr>
+        <tr>
+              <td>Color</td>
+              <td>{{item.color}}</td>
+        </tr>
+        <tr>
+              <td>Time of incident</td>
+              <td>{{ itemDate(item.create_time) }}</td>
+        </tr>
+      </table>
+    <div>
+        <b>Description</b>
+        <br>
+        {{item.description}}
+      </div>
+      <div id="edit-btn">
+        <button mat-mini-fab color="warn" (click)="delete(item)">
+            <mat-icon aria-label="Edit">delete</mat-icon>
+        </button>
+        <div class="divider"></div>
+        <button mat-mini-fab color="primary" (click)="edit(item)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+      </div>
+  </mat-expansion-panel>
+</mat-accordion>
+<p *ngIf="itemsLenght <= 0">No items found.</p>
+
