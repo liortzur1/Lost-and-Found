@@ -22,7 +22,7 @@ export class ListItemComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.itemService.getItems().subscribe(res => { this.items = res.items.filter(
+    this.itemService.getItemsByKind(this.scope_kind).subscribe(res => { this.items = res.items.filter(
       item => item.kind == this.scope_kind
   ) });
     this.itemsSub = this.itemService.getItemsUpdatelistener().subscribe((items:Item[]) => {this.items = items});

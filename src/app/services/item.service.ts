@@ -19,13 +19,15 @@ export class ItemService {
         var obs = this.http.get(URI).pipe(map(res => res.json()));
         obs.subscribe(res => { this.items = res.items });
         return obs;
-        //return this.http.get(URI).subscribe(res => {this.items = res.items});
     }
 
     getItemsByKind(kind: Kind){
-        return [...this.items.filter(
+        let URI = `${this.serverApi}/items`;
+        var obs = this.http.get(URI).pipe(map(res => res.json()));
+        obs.subscribe(res => { this.items = res.items.filter(
             item => item.kind == kind
-        )];
+        ) });
+        return obs;
     }
 
     getItemsUpdatelistener() {
