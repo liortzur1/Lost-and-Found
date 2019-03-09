@@ -34,6 +34,24 @@ module.exports.getUserByUsernameAndPassword = (username, password, callback) => 
   return (usersList.findOne(query).populate("items").exec(callback));
 }
 
+module.exports.getUsers = (usernames) => {
+  return new Promise((resolve, reject) => {
+    const query = { 'username': { '$in': usernames } };
+    usersList.find(query, (err, users) => {
+      if (err) {
+        reject(err);
+      }
+      else {
+        resolve(users.sort((user1, user2) => {
+          let index1 = usernames.findIndex(elem => elem == user1.username);
+          let index2 = usernames.findIndex(elem => elem == user2.username);
+          return index1 - index2;
+        }));
+      }
+    })
+  });
+}
+
 module.exports.addUser = (newUser, callback) => newUser.save(callback);
 
 //TODO: remove all users' items
