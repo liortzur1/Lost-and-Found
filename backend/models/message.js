@@ -6,8 +6,8 @@ const messageSchema = Schema({
     toUser: { type: Schema.Types.ObjectId, ref: "user", required: true },
     title: { type: String, require: true },
     content: { type: String, required: true },
-    createTime: { type: Date, required: true },
-    read: { type: Boolean, required: true },
+    create_time: { type: Date, required: true },
+    isRead: { type: Boolean, required: true },
     item: { type: Schema.Types.ObjectId, ref: "item", required: true }
 });
 
