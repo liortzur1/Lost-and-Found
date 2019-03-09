@@ -12,31 +12,31 @@
     <mat-grid-tile>
       <div>
         <mat-form-field appearance="outline">
-          <mat-label>שם החפץ</mat-label>
-          <input matInput placeholder="שם החפץ" name="name" [(ngModel)]="item.name" required >
+          <mat-label>Item name</mat-label>
+          <input matInput placeholder="Item name" name="name" [(ngModel)]="item.name" required >
         </mat-form-field>
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
       <div>
           <mat-form-field appearance="outline">
-            <mat-label>צבע</mat-label>
-            <input matInput placeholder="צבע" name="color" [(ngModel)]="item.color" required>
+            <mat-label>Color</mat-label>
+            <input matInput placeholder="Color" name="color" [(ngModel)]="item.color" required>
           </mat-form-field>
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
       <div>
           <mat-form-field appearance="outline">
-            <mat-label>מיקום</mat-label>
-            <input matInput placeholder="מיקום" name="location" [(ngModel)]="item.location" required>
+            <mat-label>Location</mat-label>
+            <input matInput placeholder="Location" name="location" [(ngModel)]="item.location" required>
           </mat-form-field>
       </div>
     </mat-grid-tile>
   <mat-grid-tile>
     <div>
         <mat-form-field appearance="outline">
-          <mat-label>יום המקרה</mat-label>
+          <mat-label>Time of incident</mat-label>
           <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="create_time" [(ngModel)]="item.create_time" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -46,14 +46,14 @@
   </mat-grid-list> 
   <div>
       <mat-form-field appearance="outline" style="width: 40%">
-        <mat-label>פרט כאן</mat-label>
+        <mat-label>Description</mat-label>
         <textarea matInput name="description" rows=5 [(ngModel)]="item.description"></textarea>
       </mat-form-field>
     </div>      
 </mat-dialog-content>
 <mat-dialog-actions >
-    <button mat-button mat-dialog-close>ביטול</button>
-    <button type="submit" mat-button cdkFocusInitial>עדכן</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-button cdkFocusInitial>Update</button>
 </mat-dialog-actions>
 </form>
       

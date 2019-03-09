@@ -11,11 +11,11 @@
     </mat-toolbar>
     <mat-nav-list>
         <mat-divider></mat-divider>
-        <a mat-list-item routerLink="/my-activity">הפעילות שלי</a>
-        <a mat-list-item routerLink="/lost">אבידות</a>
-        <a mat-list-item routerLink="/found">מציאות</a>
+        <a mat-list-item routerLink="/my-activity">My activity</a>
+        <a mat-list-item routerLink="/lost">Losts</a>
+        <a mat-list-item routerLink="/found">Founds</a>
         <mat-divider *ngIf="user.admin"></mat-divider>
-        <a *ngIf="user.admin" mat-list-item routerLink="/admin">ניהול</a>
-        <a *ngIf="user.admin" mat-list-item routerLink="/stats">סטטיסטיקות</a>
+        <a *ngIf="user.admin" mat-list-item routerLink="/admin">Admin</a>
+        <a *ngIf="user.admin" mat-list-item routerLink="/stats">Stats</a>
     </mat-nav-list>
 </div>
