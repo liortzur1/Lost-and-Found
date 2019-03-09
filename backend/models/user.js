@@ -52,6 +52,24 @@ module.exports.deleteUserByUsername = (username, callback) => {
   })
 }
 
+module.exports.getUsers = (usernames) => {
+  return new Promise((resolve, reject) => {
+    const query = { 'username': { '$in': usernames } };
+    usersList.find(query, (err, users) => {
+      if (err) {
+        reject(err);
+      }
+      else {
+        resolve(users.sort((user1, user2) => {
+          let index1 = usernames.findIndex(elem => elem == user1.username);
+          let index2 = usernames.findIndex(elem => elem == user2.username);
+          return index1 - index2;
+        }));
+      }
+    })
+  });
+}
+
 module.exports.addItemToUser = (item, username, callback) => {
   usersList.findOne({ username }, (err, user) => {
     if (err || !user || !user.items) {
