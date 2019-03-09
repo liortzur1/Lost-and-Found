@@ -1,11 +1,12 @@
 import { Component} from '@angular/core';
-import { Item, Kind, Category } from 'src/app/models/item'
+import { Item, Kind, Category } from 'src/app/models/item';
 import {MatDialog, MatDialogRef} from '@angular/material';
-import {ItemService} from '../../services/item.service'
+import {ItemService} from '../../services/item.service';
 import { IterableChangeRecord_ } from '@angular/core/src/change_detection/differs/default_iterable_differ';
 import { namespaceHTML } from '@angular/core/src/render3';
 import { getLocaleEraNames } from '@angular/common';
 import { keyframes } from '@angular/animations';
+import {UpdateItemComponent} from '../update-item/update-item.component';
 
 @Component({
   selector: 'app-create-item',

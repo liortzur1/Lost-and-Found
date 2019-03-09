@@ -19,20 +19,11 @@ export class SearchItemsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.item = {
-      id: 0,
-      name: "",
-      description: "",
-      kind: this.scope_kind,
-      category: Category.Laptops,
-      color: "",
-      create_time: new Date(),
-      location: "",
-      username: ""}
+    this.item = new Item();
   }
 
   onSearchItem() {
-    this.itemService.searchItems(this.item.name, this.item.kind, this.item.category, this.item.create_time);
+    this.itemService.searchItems(this.item.name, this.scope_kind, this.item.category, this.item.create_time);
   }
 
   get aa()

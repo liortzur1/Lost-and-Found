@@ -18,7 +18,8 @@ import {
   MatDialogModule,
   MatExpansionModule,
   MatPaginatorModule,
-  MatGridListModule
+  MatGridListModule,
+  MatIconModule
   
 
 } from '@angular/material';
@@ -32,7 +33,8 @@ import { Admin } from './components/admin/admin.component';
 import { Stats } from './components/stats/stats.component';
 import { CreateItemComponent, CreateItemDialogComponent } from './components/Create-Item/create-item.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
-import { SearchItemsComponent } from './components/search-items/search-items.component';;
+import { SearchItemsComponent } from './components/search-items/search-items.component';
+import { UpdateItemComponent } from './components/update-item/update-item.component';;
 
 const appRoutes: Routes = [
   { path: 'my-activity', component: MyActivity },
@@ -54,7 +56,8 @@ const appRoutes: Routes = [
     CreateItemComponent,
     CreateItemDialogComponent,
     ListItemComponent,
-    SearchItemsComponent
+    SearchItemsComponent,
+    UpdateItemComponent
   ],
   imports: [
     BrowserModule,
@@ -77,10 +80,11 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatExpansionModule,
     MatPaginatorModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule
     
   ],
-  entryComponents: [CreateItemComponent, CreateItemDialogComponent],
+  entryComponents: [CreateItemComponent, CreateItemDialogComponent, UpdateItemComponent, ListItemComponent],
   providers: [UserService],
   bootstrap: [AppComponent]
 })

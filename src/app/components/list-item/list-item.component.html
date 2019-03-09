@@ -1,6 +1,9 @@
 <mat-accordion multi="true" *ngIf="itemsLenght > 0">
   <mat-expansion-panel *ngFor="let item of items">
-    <mat-expansion-panel-header><mat-panel-title>{{item.name}}</mat-panel-title></mat-expansion-panel-header>
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{item.name}}</mat-panel-title>
+      <mat-panel-description>{{item.location}}</mat-panel-description>
+    </mat-expansion-panel-header>
     <h4>Report details</h4>
     <table>
         <tr>
@@ -17,11 +20,7 @@
         </tr>
         <tr>
               <td>Time of incident</td>
-              <td>{{ itemDate(item.createTime) }}</td>
-        </tr>
-        <tr>
-              <td>Location</td>
-              <td>{{item.location}}</td>
+              <td>{{ itemDate(item.create_time) }}</td>
         </tr>
       </table>
     <div>
@@ -29,7 +28,16 @@
         <br>
         {{item.description}}
       </div>
+      <div id="edit-btn">
+        <button mat-mini-fab color="warn" (click)="delete(item)">
+            <mat-icon aria-label="Edit">delete</mat-icon>
+        </button>
+        <div class="divider"></div>
+        <button mat-mini-fab color="primary" (click)="edit(item)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+      </div>
   </mat-expansion-panel>
 </mat-accordion>
-<p *ngIf="itemsLenght <= 0">רשימת החפצים ריקה</p>
+<p *ngIf="itemsLenght <= 0">No items found.</p>
 

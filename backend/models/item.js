@@ -6,7 +6,7 @@ const itemSchema = Schema({
   kind: { type: String, enum: ["Lost", "Found"], required: true },
   category: { type: Schema.Types.ObjectId, ref: "category", required: true },
   color: { type: String, required: true },
-  createTime: { type: Date, required: true },
+  create_time: { type: Date, required: true },
   location: { type: String, require: true },
   username: { type: Schema.Types.ObjectId, ref: "user", required: true }
 });

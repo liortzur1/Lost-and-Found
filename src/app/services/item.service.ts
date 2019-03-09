@@ -7,40 +7,7 @@ import { Http, Headers } from '@angular/http';
 @Injectable({providedIn: 'root'})
 
 export class ItemService {
-    private items: Item[] = [
-        { 
-          id: 12,
-          name: "MacBook Air 13.3",
-          description: "lalala",
-          kind: Kind.Lost,
-          category: Category.Laptops,
-          color: "silver",
-          create_time: new Date(),
-          location: "tlv",
-          username: "liortzur"},
-      
-          { 
-            id: 14,
-            name: "iPhone X",
-            description: "bobobo",
-            kind: Kind.Found,
-            category: Category.Phones,
-            color: "balck",
-            create_time: new Date(),
-            location: "beeri",
-            username: "liortzur"},
-
-            { 
-                id: 15,
-                name: "iPhone XS",
-                description: "fififi",
-                kind: Kind.Lost,
-                category: Category.Phones,
-                color: "Grey",
-                create_time: new Date(),
-                location: "beeri",
-                username: "liortzur"}
-      ];
+    private items: Item[];
 
       private itemsUpdate = new Subject<Item[]>();
       private serverApi = 'http://localhost:3000/api';
@@ -49,7 +16,9 @@ export class ItemService {
     
       getItems(){
         let URI = `${this.serverApi}/items`;
-        return this.http.get(URI).pipe(map(res => res.json()));
+        var obs = this.http.get(URI).pipe(map(res => res.json()));
+        obs.subscribe(res => { this.items = res.items });
+        return obs;
         //return this.http.get(URI).subscribe(res => {this.items = res.items});
     }
 
@@ -64,19 +33,10 @@ export class ItemService {
     }
 
     searchItems(sname: string, skind: Kind, scategory: Category,stime: Date){
-        let item: Item[] = [
-            { 
-              id: 12,
-              name: sname,
-              description: "lalala",
-              kind: skind,
-              category: scategory,
-              color: "silver",
-              create_time: stime,
-              location: "gig",
-              username: "liortzur"}
-          ];
-        this.itemsUpdate.next([...item])
+        let URI = `${this.serverApi}/items/search/${sname}-${skind}-${scategory}-${stime}`;
+        var obs = this.http.get(URI).pipe(map(res => res.json()));
+        obs.subscribe(res => { this.items = res.items });
+        this.itemsUpdate.next([...this.items]);
     }
 
     createItem(newItem:Item){
@@ -85,11 +45,53 @@ export class ItemService {
         headers.append('Content-type', 'application/json');
         this.http.post(URI, JSON.stringify(newItem),{ headers: headers }).subscribe(
             data  => {
-            console.log("POST Request is successful ", data);
+            console.log("POST Request created item successfully.", data);
             },
             error  => {
             
-            console.log("Error", error);
+            console.log("Error creating an item", error);
+            
+            }
+            
+            );
+    }
+
+    updateItem(updItem:Item){
+        var headers = new Headers();
+        let URI = `${this.serverApi}/items/`+updItem._id;
+        headers.append('Content-type', 'application/json');
+        this.http.put(URI, JSON.stringify(updItem),{ headers: headers }).subscribe(
+            data  => {
+            console.log("POST Request created item successfully.", data);
+            },
+            error  => {
+            
+            console.log("Error creating an item", error);
+            
+            }
+            
+            );
+    }
+
+    deleteItem(delItem:Item){
+        let URI = `${this.serverApi}/items/`+delItem._id;
+        this.http.delete(URI).subscribe(
+            data  => {
+            console.log("POST Request created item successfully.", data);
+            
+            // Update list
+            var index = this.items.find((item) => {
+                if(item._id == delItem._id) {
+                    return true;
+                }
+            });
+            this.items.splice(this.items.indexOf(index), 1);
+            this.itemsUpdate.next([...this.items]);
+
+            },
+            error  => {
+            
+            console.log("Error creating an item", error);
             
             }
             

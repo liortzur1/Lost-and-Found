@@ -1,5 +1,5 @@
 export class Item {
-    id: number;
+    _id: number;
     name: string;
     description: string;
     kind: Kind;
@@ -12,7 +12,7 @@ export class Item {
 }
 
 export enum Category{
-    SunGlasses = "SunGlasses",
+    Glasses = "Glasses",
     Phones = "Phones",
     Laptops = "Laptops",
     Wallets = "Wallets",
