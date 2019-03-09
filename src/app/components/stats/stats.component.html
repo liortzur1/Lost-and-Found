@@ -1,5 +1,15 @@
 <div class="statsDiv">
-    <agm-map class="mapDiv" [latitude]='latitude' [longitude]='longitude' 
+  <div class="mapDiv">
+    <agm-map class="map" [latitude]='latitude' [longitude]='longitude' 
       [mapTypeId]='mapType'>
     </agm-map>
+  </div>
+  <div class="chartsDiv">
+    <div class="pieChart">
+      <pie-chart [pieData]="pieChartData"></pie-chart>
+    </div>
+    <div class="barChart">
+        <bar-chart [data]="barChartData"></bar-chart>
+    </div>
+  </div>
 </div>

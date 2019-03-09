@@ -1,3 +1,5 @@
+import { BarChartComponent } from './../bar-chart/bar-chart.component';
+import { PieChart } from './../pie-chart/pie-chart.component';
 import { NgModule } from '@angular/core';
 import { NavbarMenu } from '../navber/navbar.component';
 import { MyActivity } from '../my-activity/my-activity.component';
@@ -12,6 +14,7 @@ import { CreateItemComponent, CreateItemDialogComponent } from '../Create-Item/c
 import { ListItemComponent } from '../list-item/list-item.component';
 import { SearchItemsComponent } from '../search-items/search-items.component';
 import UserService from '../../services/user.service';
+
 
 import {
   MatSidenavModule,
@@ -74,11 +77,13 @@ import { AgmCoreModule } from '@agm/core';
     User, 
     EditUserDialogContent,
     RemoveUserDialogContent,
-    Home,
+    Home, 
     CreateItemComponent,
     CreateItemDialogComponent,
     ListItemComponent,
-    SearchItemsComponent
+    SearchItemsComponent,
+    PieChart,
+    BarChartComponent
   ],
   providers: [UserService],
   entryComponents: [EditUserDialogContent, RemoveUserDialogContent,CreateItemComponent, CreateItemDialogComponent],

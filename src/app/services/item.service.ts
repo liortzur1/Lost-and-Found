@@ -96,4 +96,25 @@ export class ItemService {
             );
     }
 
+    getItemsByCategoryPieChart() {
+        return [
+            {
+              label: "data1",
+              value: 1,
+            },
+            {
+              label: "data2",
+              value: 2,
+            },
+            {
+              label: "data3",
+              value: 3,
+            },
+            {
+              label: "data4",
+              value: 4,
+            }
+          ];
+    }
+
 }
