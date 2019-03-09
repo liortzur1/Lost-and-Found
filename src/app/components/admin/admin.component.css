@@ -8,12 +8,12 @@
 .formDiv {
   margin-top: 4em;
   border-radius: 1.5em;
-  height: 30em;
-  width: 20em;
+  height: 50em;
+  width: 70em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 
 .labels {
@@ -31,4 +31,8 @@
 .btnRemove {
   border-radius: 10em;
   margin-top: 2em;
+}
+
+table {
+  width: 100%;
 }

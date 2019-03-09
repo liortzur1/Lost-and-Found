@@ -35,7 +35,7 @@ export class Login implements OnInit {
       this.userServ.getUserByMailAndPassword(this.userLogin.mail, this.userLogin.password).subscribe(
         res => { 
           if (!res.user) {
-            this.loginMessage = "Connection failed!";
+            this.loginMessage = "Username or Password are incorrect!";
           }
           else {
             this.user = res.user;

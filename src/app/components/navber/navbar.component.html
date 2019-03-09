@@ -13,7 +13,7 @@
         <a mat-list-item routerLink='/home/lost'>Lost</a>
         <a mat-list-item routerLink="/home/found">Found</a>
         <mat-divider *ngIf="user.admin"></mat-divider>
-        <a *ngIf="user.admin" mat-list-item routerLink="/home/admin">Admin</a>
+        <a *ngIf="user.admin" mat-list-item routerLink="/home/admin">Users</a>
         <a *ngIf="user.admin" mat-list-item routerLink="/home/stats">Stats</a>
     </mat-nav-list>
 </div>

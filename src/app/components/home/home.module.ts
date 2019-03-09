@@ -1,3 +1,4 @@
+
 import { BarChartComponent } from './../bar-chart/bar-chart.component';
 import { PieChart } from './../pie-chart/pie-chart.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,7 @@ import { Home } from './home.component';
 import { CreateItemComponent, CreateItemDialogComponent } from '../Create-Item/create-item.component';
 import { ListItemComponent } from '../list-item/list-item.component';
 import { SearchItemsComponent } from '../search-items/search-items.component';
+import { SearchUsersComponent } from './../search-users/search-users.component';
 import UserService from '../../services/user.service';
 
 
@@ -30,7 +32,8 @@ import {
   MatGridListModule,
   MatToolbarModule,
   MatListModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatTableModule
 } from '@angular/material';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -60,6 +63,7 @@ import { AgmCoreModule } from '@agm/core';
     MatGridListModule,
     HttpModule,
     MatCheckboxModule,
+    MatTableModule,
     RouterModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDe2cx9NLqtDipMKZ1J2EeioMAn2W9L_20'
@@ -82,6 +86,7 @@ import { AgmCoreModule } from '@agm/core';
     CreateItemDialogComponent,
     ListItemComponent,
     SearchItemsComponent,
+    SearchUsersComponent,
     PieChart,
     BarChartComponent
   ],
