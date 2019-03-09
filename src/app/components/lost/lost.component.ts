@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Kind } from 'src/app/models/item';
 
 @Component({
   selector: 'lost',
@@ -6,4 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./lost.component.css']
 })
 export class Lost {
+  scope_kind = Kind.Lost;
 }

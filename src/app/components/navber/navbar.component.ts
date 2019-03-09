@@ -1,13 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import UserService from '../../services/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'navbar-menu',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarMenu {
-  user = {
-    username: "דניאל צימר",
-    isAdmin: true
+export class NavbarMenu implements OnInit {
+  private user: Object;
+
+  constructor(private userServ: UserService) {
+
+  }
+
+  ngOnInit() {
+    this.loadUser();
+  }
+
+  public loadUser() {
+    this.userServ.getUserByUsernameAndPassword("liort", "1122").subscribe(
+      res => { this.user = res.user }
+    )
   }
 }
