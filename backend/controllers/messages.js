@@ -12,8 +12,8 @@ router.post('/', (req, res, next) => {
             toUser: users[1],
             title: req.body.title,
             content: req.body.content,
-            create_time: req.body.create_time,
-            isRead: req.body.isRead,
+            create_time: new Date(),
+            isRead: false,
             item: req.body.item
         });
         console.log(newMessage);

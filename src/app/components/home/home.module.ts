@@ -16,6 +16,7 @@ import { SearchItemsComponent } from '../search-items/search-items.component';
 import { SearchUsersComponent } from './../search-users/search-users.component';
 import { CreateItemComponent, CreateItemDialogComponent } from './../create-item/create-item.component';
 import { UpdateItemComponent } from './../update-item/update-item.component';
+import { ListMessagesComponent } from './../list-messages/list-messages.component'
 
 import UserService from '../../services/user.service';
 
@@ -44,6 +45,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
+import { CreateMessageComponent } from '../create-message/create-message.component';
+import { CreateMessageDialogComponent } from '../create-message/create-message-dialog.component';
 
 @NgModule({
   imports: [
@@ -93,10 +96,22 @@ import { AgmCoreModule } from '@agm/core';
     SearchItemsComponent,
     SearchUsersComponent,
     PieChart,
-    BarChartComponent
+    BarChartComponent,
+    ListMessagesComponent,
+    CreateMessageComponent,
+    CreateMessageDialogComponent
   ],
   providers: [UserService],
-  entryComponents: [EditUserDialogContent, RemoveUserDialogContent,CreateItemComponent, CreateItemDialogComponent],
+  entryComponents: [
+    EditUserDialogContent,
+    RemoveUserDialogContent,
+    CreateItemComponent,
+    CreateItemDialogComponent,
+    UpdateItemComponent,
+    ListItemComponent,
+    CreateMessageComponent,
+    CreateMessageDialogComponent
+  ],
   bootstrap: [Home]
 })
 export class HomeModule { }

@@ -1,5 +1,7 @@
+import { UserModel } from './user';
+
 export class Item {
-    _id: number;
+    _id: string;
     name: string;
     description: string;
     kind: Kind;
