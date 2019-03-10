@@ -1,0 +1,13 @@
+<div class="searchDiv">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" name="name" [(ngModel)]="user.fullName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>City</mat-label>
+    <input matInput placeholder="City" name="city" [(ngModel)]="user.city">
+  </mat-form-field>
+
+  <button (click)="submit()" mat-stroked-button >Search</button>
+</div>
