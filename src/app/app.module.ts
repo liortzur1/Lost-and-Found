@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatListModule} from '@angular/material/list';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { NgModule, Component } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
+import { Globals } from './components/utils/Globals';
+import { RoutingModule } from './app.routing';
+
 import UserService from './services/user.service';
-import { FormsModule }   from '@angular/forms';
 import {
   MatSidenavModule,
   MatInputModule,
@@ -18,76 +18,53 @@ import {
   MatDialogModule,
   MatExpansionModule,
   MatPaginatorModule,
+  MatIconModule,
   MatGridListModule,
-  MatIconModule
-  
-
+  MatToolbarModule,
+  MatListModule,
+  MatFormFieldModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { NavbarMenu } from './components/navber/navbar.component';
-import { MyActivity } from './components/my-activity/my-activity.component';
-import { Lost } from './components/lost/lost.component';
-import { Found } from './components/found/found.component';
-import { Admin } from './components/admin/admin.component';
-import { Stats } from './components/stats/stats.component';
-import { CreateItemComponent, CreateItemDialogComponent } from './components/Create-Item/create-item.component';
-import { ListItemComponent } from './components/list-item/list-item.component';
-import { SearchItemsComponent } from './components/search-items/search-items.component';
-import { UpdateItemComponent } from './components/update-item/update-item.component';
-import { ListMessagesComponent } from './components/list-messages/list-messages.component';;
 
-const appRoutes: Routes = [
-  { path: 'my-activity', component: MyActivity },
-  { path: 'lost', component: Lost },
-  { path: 'found', component: Found },
-  { path: 'admin', component: Admin },
-  { path: 'stats', component: Stats }
-];
+import { User, EditUserDialogContent } from './components/user/user.component';
+import { Login } from './components/login/login.component';
+import { Home } from './components/home/home.component';
+import { SignUp } from './components/sign-up/sign-up.component';
+import { NeedAuthGuard} from './components/utils/NeedAuthGuard';
+import { HomeModule } from './components/home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarMenu,
-    MyActivity,
-    Lost,
-    Found,
-    Admin,
-    Stats,
-    CreateItemComponent,
-    CreateItemDialogComponent,
-    ListItemComponent,
-    SearchItemsComponent,
-    UpdateItemComponent,
-    ListMessagesComponent
+    Login,
+    SignUp
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     BrowserAnimationsModule,
     MatListModule,
     MatToolbarModule,
-    HttpModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
-    FormsModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    HttpModule,
     MatCheckboxModule,
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule,
     MatExpansionModule,
     MatPaginatorModule,
     MatGridListModule,
-    MatIconModule
-    
+    MatIconModule,
+    RoutingModule,
+    HomeModule
   ],
-  entryComponents: [CreateItemComponent, CreateItemDialogComponent, UpdateItemComponent, ListItemComponent],
-  providers: [UserService],
+  providers: [UserService, NeedAuthGuard, Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
