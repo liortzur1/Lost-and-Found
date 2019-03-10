@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { Globals } from './components/utils/Globals';
 import { RoutingModule } from './app.routing';
+
 import UserService from './services/user.service';
 import {
   MatSidenavModule,
@@ -17,9 +18,7 @@ import {
   MatDialogModule,
   MatExpansionModule,
   MatPaginatorModule,
-  MatIconModule
-  
-
+  MatIconModule,
   MatGridListModule,
   MatToolbarModule,
   MatListModule,
@@ -59,8 +58,8 @@ import { HomeModule } from './components/home/home.module';
     MatNativeDateModule,
     MatExpansionModule,
     MatPaginatorModule,
-      MatGridListModule,
-      MatIconModule,
+    MatGridListModule,
+    MatIconModule,
     RoutingModule,
     HomeModule
   ],

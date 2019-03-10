@@ -11,10 +11,12 @@ import { Stats } from '../stats/stats.component';
 import { User, EditUserDialogContent } from '../user/user.component';
 import { RouterModule, Routes } from '@angular/router';
 import { Home } from './home.component';
-import { CreateItemComponent, CreateItemDialogComponent } from '../Create-Item/create-item.component';
 import { ListItemComponent } from '../list-item/list-item.component';
 import { SearchItemsComponent } from '../search-items/search-items.component';
 import { SearchUsersComponent } from './../search-users/search-users.component';
+import { CreateItemComponent, CreateItemDialogComponent } from './../create-item/create-item.component';
+import { UpdateItemComponent } from './../update-item/update-item.component';
+
 import UserService from '../../services/user.service';
 
 
@@ -29,11 +31,12 @@ import {
   MatDialogModule,
   MatExpansionModule,
   MatPaginatorModule,
+  MatIconModule,
   MatGridListModule,
   MatToolbarModule,
   MatListModule,
-  MatFormFieldModule,
-  MatTableModule
+  MatTableModule,
+  MatFormFieldModule
 } from '@angular/material';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -64,6 +67,7 @@ import { AgmCoreModule } from '@agm/core';
     HttpModule,
     MatCheckboxModule,
     MatTableModule,
+    MatIconModule,
     RouterModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDe2cx9NLqtDipMKZ1J2EeioMAn2W9L_20'
@@ -84,6 +88,7 @@ import { AgmCoreModule } from '@agm/core';
     Home, 
     CreateItemComponent,
     CreateItemDialogComponent,
+    UpdateItemComponent,
     ListItemComponent,
     SearchItemsComponent,
     SearchUsersComponent,
