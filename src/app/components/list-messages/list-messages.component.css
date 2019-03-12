@@ -1,0 +1,15 @@
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.mat-expansion-panel-header-description {
+  justify-content: flex-end;
+  align-items: right;
+}
+
+div.sentFrom{
+  margin-top: 10px;
+  font-size: 11px;
+  color: dimgrey;
+}

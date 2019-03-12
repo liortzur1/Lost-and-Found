@@ -28,6 +28,19 @@ router.get('/:mail/:password',(req,res) => {
     });
 });
 
+// GET HTTP method to /users/:id
+router.get('/:id',(req,res) => {
+    user.getUserByID(req.params.id,(err, user)=> {
+        if(err) {
+            res.json({success:false, message: `Failed to find user by ID. Error: ${err}`});
+        }
+        else {
+            res.write(JSON.stringify({ success: true, user: user }, null, 2));
+            res.end();
+        }
+    });
+});
+
 //POST HTTP method to /users
 router.post('/', (req,res,next) => {
     let newUser = {

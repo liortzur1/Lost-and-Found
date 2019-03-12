@@ -34,6 +34,11 @@ module.exports.getUserByMailAndPassword = (mail, password, callback) => {
   return (usersList.findOne(query).populate("items").exec(callback));
 }
 
+module.exports.getUserByID = (id, callback) => {
+  let query = { _id: id };
+  return (usersList.findOne(query).populate("items").exec(callback));
+}
+
 module.exports.editUser = (editedUser, callback) => usersList.findOneAndUpdate({ mail: editedUser.mail }, editedUser, {upsert: true, new: true, runValidators: true}, callback);
 
 module.exports.addUser = (newUser, callback) => newUser.save(callback);

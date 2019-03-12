@@ -1,3 +1,5 @@
+import { UserModel } from './user';
+
 export class Message {
     _id: number;
     fromUser: string;

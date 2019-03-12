@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Item, Kind, Category } from 'src/app/models/item';
 import {Message} from 'src/app/models/message';
 import {MessageService} from '../../services/message.service';
@@ -10,14 +10,26 @@ import {MessageService} from '../../services/message.service';
 })
 export class ListMessagesComponent implements OnInit {
 
-  messages: Message;
-  m: string;
+  @Input() item:Item;
+
+  messages: Message[];
 
   constructor(public messageService:MessageService) { }
 
   ngOnInit() {
-    this.messageService.getMesseges().subscribe(res => { this.messages = res.messages });
+    this.messageService.getMessagesByItem(this.item).subscribe(res => { this.messages = res.messages });
   }
+
+  formatDate(date:string)
+  {
+    let formatted = new Date (date);
+    return formatted.toLocaleString('en-US', { hour12: false, month: 'long', day:'numeric', year:'numeric', hour: '2-digit', minute:'2-digit'});
+  }
+
+  get messagesLength() {
+    return this.messages.length;
+  }
+
 
 
 }

@@ -11,16 +11,39 @@ export class MessageService {
     private messages: Message[];
 
       private messagesUpdate = new Subject<Message[]>();
-      private serverApi = 'http://localhost:3000/api';
+      private serverApi = 'http://localhost:3000/api/messages';
 
       constructor(private http: Http) { }
     
-      getMesseges(){
-        let URI = `${this.serverApi}/messages/liort`;
+      getMessages(){
+        let URI = `${this.serverApi}/liort`;
         var obs = this.http.get(URI).pipe(map(res => res.json()));
         obs.subscribe(res => { this.messages = res.messages });
         return obs;
-    }
+      }
+
+      getMessagesByItem(item: Item) {
+        let URI = `${this.serverApi}/${item._id}`;
+        return this.http.get(URI).pipe(map(res => res.json()));
+      }
+
+    createMessage(newMessage:Message){
+      var headers = new Headers();
+      let URI = `${this.serverApi}`;
+      headers.append('Content-type', 'application/json');
+      this.http.post(URI, JSON.stringify(newMessage),{ headers: headers }).subscribe(
+          data  => {
+          console.log("POST Request created message successfully.", data);
+          },
+          error  => {
+          
+          console.log("Error creating an message", error);
+          
+          }
+          
+          );
+  }
+
 
 
 }

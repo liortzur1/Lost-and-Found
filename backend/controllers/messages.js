@@ -5,18 +5,16 @@ const user = require('../models/user');
 const message = require('../models/message');
 
 router.post('/', (req, res, next) => {
-    user.getUsers([req.body.fromUser, req.body.toUser]).then(users => {
 
         let newMessage = new message({
-            fromUser: users[0],
-            toUser: users[1],
+            fromUser: req.body.fromUser,
+            toUser: req.body.toUser,
             title: req.body.title,
             content: req.body.content,
             create_time: new Date(),
             isRead: false,
             item: req.body.item
         });
-        console.log(newMessage);
         newMessage.save(err => {
             if (err) {
                 console.error(err);
@@ -26,13 +24,21 @@ router.post('/', (req, res, next) => {
                 res.sendStatus(200);
             }
         });
-    }).catch(err => {
-        console.error(err);
-        res.sendStatus(500);
-    });
 });
 
-router.get('/:username', (req, res) => {
+router.get('/:item_id', (req, res) => {
+    message.getMessagesByItem(req.params.item_id, (err, messages) => {
+        if(err) {
+            res.json({success:false, message: `Failed to find messages by ID. Error: ${err}`});
+        }
+        else {
+            res.write(JSON.stringify({ success: true, messages: messages }, null, 2));
+            res.end();
+        }
+    })
+});
+
+router.get('/byUser/:username', (req, res) => {
     message.getMessagesByUsername(req.params.username)
         .then(messages => {
             res.write(JSON.stringify({ success: true, messages: messages }, null, 2));
@@ -42,7 +48,8 @@ router.get('/:username', (req, res) => {
             console.error(err);
             res.sendStatus(500);
         })
-})
+});
+
 router.get('/amount/:username', (req, res) => {
     message.totalMessagesAmount(req.params.username)
         .then(amount => {
@@ -52,7 +59,7 @@ router.get('/amount/:username', (req, res) => {
             console.error(err);
             res.sendStatus(500);
         })
-})
+});
 
 //TODO: valadition (?) - if the items belogns to the user
 router.delete('/:id', (req, res) => {
