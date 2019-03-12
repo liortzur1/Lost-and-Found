@@ -5,6 +5,7 @@ import {ItemService} from '../../services/item.service';
 import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {UpdateItemComponent} from '../update-item/update-item.component';
+import { CreateMessageDialogComponent } from '../create-message/create-message-dialog.component'
 
 @Component({
   selector: 'app-list-item',
@@ -37,6 +38,12 @@ export class ListItemComponent implements OnInit {
   delete(item:Item) {
     //this.items.slice(this.items.indexOf(item), 1);
     this.itemService.deleteItem(item);
+  }
+
+  writeMessage(item:Item){
+    const dialogRef = this.dialog.open(CreateMessageDialogComponent, {data: item, height: '550px', width: '600px'});
+
+    dialogRef.afterClosed().subscribe(result => {console.log( `Result: ${result}` )});
   }
 
   get itemsLenght()

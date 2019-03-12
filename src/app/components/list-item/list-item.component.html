@@ -30,12 +30,16 @@
         {{item.description}}
       </div>
       <div id="edit-btn">
-        <button mat-mini-fab color="warn" (click)="delete(item)">
-            <mat-icon aria-label="Edit">delete</mat-icon>
+        <button mat-mini-fab color="warn" matTooltip="Delete item" (click)="delete(item)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
         <div class="divider"></div>
-        <button mat-mini-fab color="primary" (click)="edit(item)">
+        <button mat-mini-fab color="primary" matTooltip="Edit item Details" (click)="edit(item)">
             <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+        <div class="divider"></div>
+        <button mat-mini-fab color="primary" matTooltip="Write a message" (click)="writeMessage(item)">
+            <mat-icon aria-label="Message">message</mat-icon>
         </button>
       </div>
   </mat-expansion-panel>

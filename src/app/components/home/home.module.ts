@@ -37,7 +37,8 @@ import {
   MatToolbarModule,
   MatListModule,
   MatTableModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -45,7 +46,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
-import { CreateMessageComponent } from '../create-message/create-message.component';
 import { CreateMessageDialogComponent } from '../create-message/create-message-dialog.component';
 
 @NgModule({
@@ -72,6 +72,7 @@ import { CreateMessageDialogComponent } from '../create-message/create-message-d
     MatTableModule,
     MatIconModule,
     RouterModule,
+    MatTooltipModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDe2cx9NLqtDipMKZ1J2EeioMAn2W9L_20'
     })
@@ -98,7 +99,6 @@ import { CreateMessageDialogComponent } from '../create-message/create-message-d
     PieChart,
     BarChartComponent,
     ListMessagesComponent,
-    CreateMessageComponent,
     CreateMessageDialogComponent
   ],
   providers: [UserService],
@@ -109,7 +109,6 @@ import { CreateMessageDialogComponent } from '../create-message/create-message-d
     CreateItemDialogComponent,
     UpdateItemComponent,
     ListItemComponent,
-    CreateMessageComponent,
     CreateMessageDialogComponent
   ],
   bootstrap: [Home]
