@@ -37,8 +37,11 @@ export class ItemService {
     searchItems(sname: string, skind: Kind, scategory: Category,stime: Date){
         let URI = `${this.serverApi}/items/search/${sname}-${skind}-${scategory}-${stime}`;
         var obs = this.http.get(URI).pipe(map(res => res.json()));
-        obs.subscribe(res => { this.items = res.items });
-        this.itemsUpdate.next([...this.items]);
+        obs.subscribe(res => { 
+            this.items = res.items
+            this.itemsUpdate.next([...this.items]);
+        });
+        
     }
 
     createItem(newItem:Item){
