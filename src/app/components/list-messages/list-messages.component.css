@@ -13,3 +13,16 @@ div.sentFrom{
   font-size: 11px;
   color: dimgrey;
 }
+
+div.title{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+h3 {
+  display: inline;
+}
+.noItems{
+  color: dimgrey;
+}

@@ -40,17 +40,6 @@ export class ListItemComponent implements OnInit {
     this.itemService.deleteItem(item);
   }
 
-  writeMessage(item:Item){
-    const dialogRef = this.dialog.open(CreateMessageDialogComponent, {data: item, height: '550px', width: '600px'});
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log( `Result: ${result}` )
-      if (result) {
-        // Event to refresh messages list
-      }
-    });
-  }
-
   get itemsLenght()
   {
     return this.items.length;
@@ -59,7 +48,7 @@ export class ListItemComponent implements OnInit {
   itemDate(date:string)
   {
     let formatted = new Date (date);
-    return formatted.toLocaleDateString();
+    return formatted.toLocaleDateString('en-US', { hour12: false, month: 'long', day:'numeric', year:'numeric'});
   }
 
   usernameById(user:string)

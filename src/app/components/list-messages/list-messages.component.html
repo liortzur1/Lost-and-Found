@@ -1,6 +1,12 @@
+
+<mat-divider style="margin-top: 20px"></mat-divider>
+<div class="title">
+    <h3>Messages</h3>
+    <button mat-icon-button color="primary" matTooltip="Write a message" (click)="writeMessage()">
+        <mat-icon aria-label="Message">add_circle</mat-icon>
+    </button>
+</div>
 <div *ngIf="messagesLength > 0">
-  <mat-divider style="margin-top: 20px"></mat-divider>
-  <h3>Messages</h3>
   <div style="margin-top: 20px">
     <mat-accordion>
         <mat-expansion-panel *ngFor="let message of messages" hideToggle>
@@ -19,3 +25,4 @@
     </mat-accordion>
   </div>
 </div>
+<p class="noItems" *ngIf="messagesLength <= 0">No messages yet.</p>

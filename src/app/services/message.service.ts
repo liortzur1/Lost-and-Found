@@ -10,22 +10,26 @@ import { Http, Headers } from '@angular/http';
 export class MessageService {
     private messages: Message[];
 
-      private messagesUpdate = new Subject<Message[]>();
-      private serverApi = 'http://localhost:3000/api/messages';
+    private messagesUpdate = new Subject<Message[]>();
+    private serverApi = 'http://localhost:3000/api/messages';
 
-      constructor(private http: Http) { }
-    
-      getMessages(){
-        let URI = `${this.serverApi}/liort`;
-        var obs = this.http.get(URI).pipe(map(res => res.json()));
-        obs.subscribe(res => { this.messages = res.messages });
-        return obs;
-      }
+    constructor(private http: Http) { }
+  
+    getMessages(){
+      let URI = `${this.serverApi}/liort`;
+      var obs = this.http.get(URI).pipe(map(res => res.json()));
+      obs.subscribe(res => { this.messages = res.messages });
+      return obs;
+    }
 
-      getMessagesByItem(item: Item) {
-        let URI = `${this.serverApi}/${item._id}`;
-        return this.http.get(URI).pipe(map(res => res.json()));
-      }
+    getMessagesByItem(item: Item) {
+      let URI = `${this.serverApi}/${item._id}`;
+      return this.http.get(URI).pipe(map(res => res.json()));
+    }
+
+    getMessagesUpdatelistener() {
+      return this.messagesUpdate.asObservable();
+    }
 
     createMessage(newMessage:Message){
       var headers = new Headers();
