@@ -51,10 +51,4 @@ export class ListItemComponent implements OnInit {
     return formatted.toLocaleDateString('en-US', { hour12: false, month: 'long', day:'numeric', year:'numeric'});
   }
 
-  usernameById(user:string)
-  {
-    // TODO: query for user display name by ID
-    return "Lior Tzur"
-  }
-
 }

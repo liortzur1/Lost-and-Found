@@ -27,12 +27,11 @@ router.get('/search/:name-:kind-:category-:time', (req, res) => {
         if (name == 'undefined') {
             name = "";
         }
-        console.log(category_id);
         item.find({name: new RegExp('.*'+name+'.*', "i"),
         kind: kind,
         category: category_id,
         create_time: time
-        }, (err, items) => {
+        }).populate("category").populate("username").exec((err, items) => {
             if(err){
                 res.json({ success: false, message: `Failed to load searced items. Error: ${err}` });
             }

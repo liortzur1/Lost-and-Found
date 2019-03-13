@@ -2,6 +2,7 @@ import { Component} from '@angular/core';
 import { Item, Kind, Category } from 'src/app/models/item';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {ItemService} from '../../services/item.service';
+import { Globals } from './../utils/Globals';
 import { IterableChangeRecord_ } from '@angular/core/src/change_detection/differs/default_iterable_differ';
 import { namespaceHTML } from '@angular/core/src/render3';
 import { getLocaleEraNames } from '@angular/common';
@@ -36,11 +37,13 @@ export class CreateItemDialogComponent {
 
 
 
-  constructor(public itemService: ItemService, public dialogRef: MatDialogRef<CreateItemDialogComponent>) { }
+  constructor(public itemService: ItemService,
+    public dialogRef: MatDialogRef<CreateItemDialogComponent>,
+    private globals: Globals) { }
 
   onSubmit()
   {
-    this.item.username = "5c5b0138c4b83825e480744f"; // TODO: logged in user id
+    this.item.username = this.globals.connectedUser._id;
     this.itemService.createItem(this.item);
     this.dialogRef.close();
   }
