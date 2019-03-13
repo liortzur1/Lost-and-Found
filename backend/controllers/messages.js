@@ -21,7 +21,7 @@ router.post('/', (req, res, next) => {
                 res.json({ success: false, message: `Failed to create a new Message. Error: ${err}. req: ${req}` });
             }
             else {
-                res.sendStatus(200);
+                res.json({success:true, message: `Message Added successfully.`, message: newMessage});
             }
         });
 });

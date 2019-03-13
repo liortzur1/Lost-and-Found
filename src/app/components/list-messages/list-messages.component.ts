@@ -12,12 +12,17 @@ export class ListMessagesComponent implements OnInit {
 
   @Input() item:Item;
 
+
   messages: Message[];
 
   constructor(public messageService:MessageService) { }
 
   ngOnInit() {
-    this.messageService.getMessagesByItem(this.item).subscribe(res => { this.messages = res.messages });
+    this.messageService.getMessagesByItem(this.item).subscribe(res => { this.messages = res.messages.sort(this.dateSort); });
+  }
+
+  dateSort(a, b) {
+    return new Date(b.create_time).getTime() - new Date(a.create_time).getTime();
   }
 
   formatDate(date:string)

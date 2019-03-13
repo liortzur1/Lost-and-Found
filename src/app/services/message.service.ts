@@ -33,7 +33,7 @@ export class MessageService {
       headers.append('Content-type', 'application/json');
       this.http.post(URI, JSON.stringify(newMessage),{ headers: headers }).subscribe(
           data  => {
-          console.log("POST Request created message successfully.", data);
+          console.log("POST Request to create message has been responded.", data);
           },
           error  => {
           

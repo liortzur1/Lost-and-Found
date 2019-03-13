@@ -43,7 +43,12 @@ export class ListItemComponent implements OnInit {
   writeMessage(item:Item){
     const dialogRef = this.dialog.open(CreateMessageDialogComponent, {data: item, height: '550px', width: '600px'});
 
-    dialogRef.afterClosed().subscribe(result => {console.log( `Result: ${result}` )});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log( `Result: ${result}` )
+      if (result) {
+        // Event to refresh messages list
+      }
+    });
   }
 
   get itemsLenght()

@@ -34,7 +34,7 @@ export class CreateMessageDialogComponent {
   onSubmit()
   {
     this.messageService.createMessage(this.message);
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
   
 }
