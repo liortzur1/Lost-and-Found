@@ -42,7 +42,10 @@ export class ListItemComponent implements OnInit {
 
   get itemsLenght()
   {
-    return this.items.length;
+    if(this.items != null) {
+      return this.items.length;
+    }
+    return 0;
   }
 
   itemDate(date:string)

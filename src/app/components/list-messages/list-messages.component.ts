@@ -51,7 +51,10 @@ export class ListMessagesComponent implements OnInit {
   }
 
   get messagesLength() {
-    return this.messages.length;
+    if (this.messages != null) {
+      return this.messages.length;
+    }
+    return 0;
   }
 
 
