@@ -25,10 +25,11 @@ export class CreateMessageDialogComponent {
     private globals: Globals,
     private userService: UserService)
     {
-    this.message.toUser = item.username;
+    var user = JSON.parse(JSON.stringify(item.username));
+    this.message.toUser = user._id;
+    this.toUserName = user.fullName;
     this.message.item = item._id;
     this.message.fromUser = this.globals.connectedUser._id;
-    this.userService.getUserByID(this.message.toUser).subscribe(res => { this.toUserName =  res.user.fullName; });
    }
 
   onSubmit()
