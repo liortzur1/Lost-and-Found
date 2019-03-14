@@ -21,6 +21,11 @@ export default class UserService {
         return this.http.get(URI).pipe(map(res => res.json()));
     }
 
+    public getUserByID(id: string) {
+        const URI = `${this.serverApi}/users/${id}`;
+        return this.http.get(URI).pipe(map(res => res.json()));
+    }
+
     CreateOrUpdateUser(user: UserModel) {
         const URI = `${this.serverApi}/users`;
         this.http.post(URI, user).subscribe(response => {

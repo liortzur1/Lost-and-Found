@@ -34,6 +34,11 @@ module.exports.getUserByMailAndPassword = (mail, password, callback) => {
   return (usersList.findOne(query).populate("items").exec(callback));
 }
 
+module.exports.getUserByID = (id, callback) => {
+  let query = { _id: id };
+  return (usersList.findOne(query).populate("items").exec(callback));
+}
+
 module.exports.editUser = (editedUser, callback) => usersList.findOneAndUpdate({ mail: editedUser.mail }, editedUser, {upsert: true, new: true, runValidators: true}, callback);
 
 module.exports.addUser = (newUser, callback) => newUser.save(callback);
@@ -52,6 +57,25 @@ module.exports.deleteUserByMail = (mail, callback) => {
       usersList.remove({ mail }, callback);
     }
   })
+}
+
+
+module.exports.getUsers = (usernames) => {
+  return new Promise((resolve, reject) => {
+    const query = { 'username': { '$in': usernames } };
+    usersList.find(query, (err, users) => {
+      if (err) {
+        reject(err);
+      }
+      else {
+        resolve(users.sort((user1, user2) => {
+          let index1 = usernames.findIndex(elem => elem == user1.username);
+          let index2 = usernames.findIndex(elem => elem == user2.username);
+          return index1 - index2;
+        }));
+      }
+    })
+  });
 }
 
 module.exports.addItemToUser = (item, mail, callback) => {

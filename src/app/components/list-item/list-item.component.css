@@ -21,7 +21,18 @@ td:first-child {
 }
 
 #edit-btn {
-  text-align: right
+  text-align: right;
+  margin-top: 35px;
+  margin-bottom: 10px;
+}
+
+.item-desc {
+  border-radius: 10px;
+  background: #f2f2f2;
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 30px;
 }
 
 .divider{

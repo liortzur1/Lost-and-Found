@@ -13,4 +13,4 @@ const itemSchema = Schema({
 
 const itemsList = module.exports = mongoose.model("item", itemSchema);
 
-module.exports.getAllItems = (callback) => itemsList.find().populate("category").exec(callback);
+module.exports.getAllItems = (callback) => itemsList.find().populate("category").populate("username").exec(callback);

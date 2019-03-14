@@ -27,12 +27,11 @@ router.get('/search/:name-:kind-:category-:time', (req, res) => {
         if (name == 'undefined') {
             name = "";
         }
-        console.log(category_id);
         item.find({name: new RegExp('.*'+name+'.*', "i"),
         kind: kind,
         category: category_id,
         create_time: time
-        }, (err, items) => {
+        }).populate("category").populate("username").exec((err, items) => {
             if(err){
                 res.json({ success: false, message: `Failed to load searced items. Error: ${err}` });
             }
@@ -44,19 +43,6 @@ router.get('/search/:name-:kind-:category-:time', (req, res) => {
     });  
 });
 
-/*
-var cat_name;
-    category.findOne({name: req.params.category}, (err, category) => {
-        if (err) {
-            res.json({ success: false, message: `Failed to load searced items category. Error: ${err}` });
-        }
-        else {
-            cat_name = category.name;
-            console.log(cat_name);
-        }
-    })
-    console.log(cat_name);
- */
 
 router.post('/', (req, res, next) => {
     category.getCategoryByName(req.body.category).then(category => {

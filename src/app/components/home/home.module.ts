@@ -16,6 +16,7 @@ import { SearchItemsComponent } from '../search-items/search-items.component';
 import { SearchUsersComponent } from './../search-users/search-users.component';
 import { CreateItemComponent, CreateItemDialogComponent } from './../create-item/create-item.component';
 import { UpdateItemComponent } from './../update-item/update-item.component';
+import { ListMessagesComponent } from './../list-messages/list-messages.component'
 
 import UserService from '../../services/user.service';
 
@@ -36,7 +37,8 @@ import {
   MatToolbarModule,
   MatListModule,
   MatTableModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -44,6 +46,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
+import { CreateMessageDialogComponent } from '../create-message/create-message-dialog.component';
 
 @NgModule({
   imports: [
@@ -69,6 +72,7 @@ import { AgmCoreModule } from '@agm/core';
     MatTableModule,
     MatIconModule,
     RouterModule,
+    MatTooltipModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDe2cx9NLqtDipMKZ1J2EeioMAn2W9L_20'
     })
@@ -93,10 +97,20 @@ import { AgmCoreModule } from '@agm/core';
     SearchItemsComponent,
     SearchUsersComponent,
     PieChart,
-    BarChartComponent
+    BarChartComponent,
+    ListMessagesComponent,
+    CreateMessageDialogComponent
   ],
   providers: [UserService],
-  entryComponents: [EditUserDialogContent, RemoveUserDialogContent,CreateItemComponent, CreateItemDialogComponent],
+  entryComponents: [
+    EditUserDialogContent,
+    RemoveUserDialogContent,
+    CreateItemComponent,
+    CreateItemDialogComponent,
+    UpdateItemComponent,
+    ListItemComponent,
+    CreateMessageDialogComponent
+  ],
   bootstrap: [Home]
 })
 export class HomeModule { }

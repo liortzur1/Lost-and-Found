@@ -5,6 +5,7 @@ import {ItemService} from '../../services/item.service';
 import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {UpdateItemComponent} from '../update-item/update-item.component';
+import { CreateMessageDialogComponent } from '../create-message/create-message-dialog.component'
 
 @Component({
   selector: 'app-list-item',
@@ -22,7 +23,7 @@ export class ListItemComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.itemService.getItems().subscribe(res => { this.items = res.items.filter(
+    this.itemService.getItemsByKind(this.scope_kind).subscribe(res => { this.items = res.items.filter(
       item => item.kind == this.scope_kind
   ) });
     this.itemsSub = this.itemService.getItemsUpdatelistener().subscribe((items:Item[]) => {this.items = items});
@@ -41,19 +42,16 @@ export class ListItemComponent implements OnInit {
 
   get itemsLenght()
   {
-    return this.items.length;
+    if(this.items != null) {
+      return this.items.length;
+    }
+    return 0;
   }
 
   itemDate(date:string)
   {
     let formatted = new Date (date);
-    return formatted.toLocaleDateString();
-  }
-
-  usernameById(user:string)
-  {
-    // TODO: query for user display name by ID
-    return "Lior Tzur"
+    return formatted.toLocaleDateString('en-US', { hour12: false, month: 'long', day:'numeric', year:'numeric'});
   }
 
 }

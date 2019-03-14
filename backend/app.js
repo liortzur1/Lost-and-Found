@@ -9,7 +9,7 @@ const config = require('./config/database');
 const users = require('./controllers/users');
 const items = require('./controllers/items');
 const categories = require('./controllers/categories');
-
+const messages = require('./controllers/messages');
 // Connect mongoose to our database
 mongoose.connect(config.database);
 
@@ -29,6 +29,7 @@ app.use(bodyParser.json());
 app.use('/api/users', users);
 app.use('/api/items', items);
 app.use('/api/categories', categories);
+app.use('/api/messages', messages);
 
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "dist/LostAndFound", index.html));

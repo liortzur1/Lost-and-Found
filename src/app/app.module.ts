@@ -26,6 +26,7 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
+
 import { User, EditUserDialogContent } from './components/user/user.component';
 import { Login } from './components/login/login.component';
 import { Home } from './components/home/home.component';

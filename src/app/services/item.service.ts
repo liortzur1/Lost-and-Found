@@ -19,13 +19,15 @@ export class ItemService {
         var obs = this.http.get(URI).pipe(map(res => res.json()));
         obs.subscribe(res => { this.items = res.items });
         return obs;
-        //return this.http.get(URI).subscribe(res => {this.items = res.items});
     }
 
     getItemsByKind(kind: Kind){
-        return [...this.items.filter(
+        let URI = `${this.serverApi}/items`;
+        var obs = this.http.get(URI).pipe(map(res => res.json()));
+        obs.subscribe(res => { this.items = res.items.filter(
             item => item.kind == kind
-        )];
+        ) });
+        return obs;
     }
 
     getItemsUpdatelistener() {
@@ -35,8 +37,11 @@ export class ItemService {
     searchItems(sname: string, skind: Kind, scategory: Category,stime: Date){
         let URI = `${this.serverApi}/items/search/${sname}-${skind}-${scategory}-${stime}`;
         var obs = this.http.get(URI).pipe(map(res => res.json()));
-        obs.subscribe(res => { this.items = res.items });
-        this.itemsUpdate.next([...this.items]);
+        obs.subscribe(res => { 
+            this.items = res.items
+            this.itemsUpdate.next([...this.items]);
+        });
+        
     }
 
     createItem(newItem:Item){
