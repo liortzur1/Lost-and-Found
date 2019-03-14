@@ -1,3 +1,4 @@
+import { UserModel } from './../../models/user';
 import {Injectable} from '@angular/core';
 
 const TOKEN = 'TOKEN';
@@ -9,6 +10,10 @@ export class CustomerService {
 
   setToken(token: string): void {
     localStorage.setItem(TOKEN, token);
+  }
+
+  getToken(token: string): UserModel {
+    return JSON.parse(localStorage.getItem(TOKEN));
   }
 
   isLogged() {

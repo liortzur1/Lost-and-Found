@@ -24,7 +24,7 @@ export class SignUp {
     addUser() {
       this.userServ.CreateOrUpdateUser(this.userDetails);
       this.globals.connectedUser = this.userDetails;
-      this.customer.setToken(this.userDetails.mail as string);
-      this.router.navigate(['/home']);
+      this.customer.setToken(JSON.stringify(this.userDetails));
+      this.router.navigate(['/home/my-activity']);
     }
 }

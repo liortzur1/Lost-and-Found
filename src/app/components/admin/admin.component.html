@@ -1,6 +1,10 @@
 <div class="adminDiv" >
     <div class="formDiv">
-        <search-users (fieldsDataOutput)="getFilterUsers($event)"></search-users>    
+        <search-users (fieldsDataOutput)="getFilterUsers($event)"></search-users>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
             <!-- Checkbox Column -->

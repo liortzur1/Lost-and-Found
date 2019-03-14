@@ -40,8 +40,8 @@ export class Login implements OnInit {
           else {
             this.user = res.user;
             this.globals.connectedUser = this.user;
-            this.customer.setToken(res.user.mail);
-            this.router.navigate(['/home']);
+            this.customer.setToken(JSON.stringify(res.user));
+            this.router.navigate(['/home/my-activity']);
           }   
          },
          err => {

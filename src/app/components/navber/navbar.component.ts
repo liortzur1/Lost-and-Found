@@ -1,3 +1,4 @@
+import { CustomerService } from './../utils/CustomerService';
 import { Component, OnInit, Input } from '@angular/core';
 import UserService from '../../services/user.service';
 import { UserModel } from '../../models/user';
@@ -14,7 +15,10 @@ export class NavbarMenu implements OnInit {
 
   @Input() user: UserModel; 
 
-  constructor(private globals: Globals) {
+  constructor(private globals: Globals,
+              private custService: CustomerService,
+              private userService: UserService) {
+      this.globals.connectedUser = this.custService.getToken() as UserModel;
   }
 
   ngOnInit() {

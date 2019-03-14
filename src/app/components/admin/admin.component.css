@@ -6,9 +6,9 @@
 }
 
 .formDiv {
-  margin-top: 4em;
+  margin-top: 2em;
   border-radius: 1.5em;
-  height: 50em;
+  height: 40em;
   width: 70em;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,9 @@
 
 table {
   width: 100%;
+}
+
+.mat-divider {
+  width: 100%;
+  border-color: rgb(199, 198, 198);
 }
