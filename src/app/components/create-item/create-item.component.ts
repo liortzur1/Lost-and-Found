@@ -8,6 +8,7 @@ import { namespaceHTML } from '@angular/core/src/render3';
 import { getLocaleEraNames } from '@angular/common';
 import { keyframes } from '@angular/animations';
 import {UpdateItemComponent} from '../update-item/update-item.component';
+import { ItemLocation } from './../../models/location';
 
 @Component({
   selector: 'app-create-item',
@@ -39,7 +40,9 @@ export class CreateItemDialogComponent {
 
   constructor(public itemService: ItemService,
     public dialogRef: MatDialogRef<CreateItemDialogComponent>,
-    private globals: Globals) { }
+    private globals: Globals) {
+      this.item.location = {name: ""} as ItemLocation;
+     }
 
   onSubmit()
   {
@@ -57,6 +60,14 @@ export class CreateItemDialogComponent {
   get kinds()
   {
     return Object.keys(Kind);
+  }
+
+  handleAddressChange(location) {
+    let currLocation = new ItemLocation();
+    currLocation.name = location.formatted_address;
+    currLocation.lng = location.geometry.location.lng();
+    currLocation.lat = location.geometry.location.lat();
+    this.item.location = currLocation;
   }
 
 }

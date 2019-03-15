@@ -1,3 +1,4 @@
+import { ItemLocation } from './../../models/location';
 import { Component, Inject } from '@angular/core';
 import { Item, Kind, Category } from 'src/app/models/item';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -36,6 +37,14 @@ export class UpdateItemComponent {
   itemDate(date:string)
   {
     return new Date (date);
+  }
+  
+  handleAddressChange(location) {
+    let currLocation = new ItemLocation();
+    currLocation.name = location.formatted_address;
+    currLocation.lng = location.geometry.location.lng();
+    currLocation.lat = location.geometry.location.lat();
+    this.item.location = currLocation;
   }
 
 }

@@ -104,24 +104,8 @@ export class ItemService {
     }
 
     getItemsByCategoryPieChart() {
-        return [
-            {
-              label: "data1",
-              value: 1,
-            },
-            {
-              label: "data2",
-              value: 2,
-            },
-            {
-              label: "data3",
-              value: 3,
-            },
-            {
-              label: "data4",
-              value: 4,
-            }
-          ];
+        let URI = `${this.serverApi}/items/itemsByCategory`;
+        return this.http.get(URI).pipe(map(res => 
+            res.json()));
     }
-
 }

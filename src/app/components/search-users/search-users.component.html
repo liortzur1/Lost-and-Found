@@ -6,7 +6,7 @@
 
   <mat-form-field>
     <mat-label>City</mat-label>
-    <input matInput placeholder="City" name="city" [(ngModel)]="user.city">
+    <input ngx-google-places-autocomplete matInput placeholder="City" name="city" [(ngModel)]="user.city" (onAddressChange)="handleAddressChange($event)">
   </mat-form-field>
 
   <button class="searchBut" (click)="submit()" mat-stroked-button>Search</button>

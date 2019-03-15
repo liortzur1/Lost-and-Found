@@ -12,7 +12,7 @@ export class CustomerService {
     localStorage.setItem(TOKEN, token);
   }
 
-  getToken(token: string): UserModel {
+  getToken(): UserModel {
     return JSON.parse(localStorage.getItem(TOKEN));
   }
 

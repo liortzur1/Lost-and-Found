@@ -52,7 +52,7 @@
       <div>
           <mat-form-field appearance="outline">
             <mat-label>Location</mat-label>
-            <input matInput placeholder="e.g. 42 st. Subway, NYC" name="location" [(ngModel)]="item.location" required>
+            <input ngx-google-places-autocomplete matInput placeholder="e.g. 42 st. Subway, NYC" name="location" [(ngModel)]="item.location.name" (onAddressChange)="handleAddressChange($event)" required>
           </mat-form-field>
       </div>
     </mat-grid-tile>

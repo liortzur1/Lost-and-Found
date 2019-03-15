@@ -18,8 +18,13 @@
 }
 
 .chartsDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30em;
     margin-top: 2em;
-    margin-left: 12em;
+    margin-left: 10em;
 }
 
 .pieChart {
@@ -28,7 +33,7 @@
 }
 
 .barChart {
-    margin-top: 7em;
-    height: 20em;
-    width: 20em;
+    margin-top: 5em;
+    height: 18em;
+    width: 18em;
 }

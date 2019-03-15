@@ -16,7 +16,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>City</mat-label>
-                <input matInput [(ngModel)]="userDetails.city">
+                <input ngx-google-places-autocomplete matInput [(ngModel)]="userDetails.city" (onAddressChange)="handleAddressChange($event)">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Password</mat-label>

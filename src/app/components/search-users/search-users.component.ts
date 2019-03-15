@@ -23,4 +23,8 @@ export class SearchUsersComponent {
 
     this.fieldsDataOutput.emit(this.fieldsData);
   }
+
+  public handleAddressChange(city) {
+    this.user.city = city.formatted_address;
+  }
 }

@@ -26,7 +26,7 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
-
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { User, EditUserDialogContent } from './components/user/user.component';
 import { Login } from './components/login/login.component';
 import { Home } from './components/home/home.component';
@@ -46,6 +46,7 @@ import { HomeModule } from './components/home/home.module';
     ReactiveFormsModule,
     MatSidenavModule,
     BrowserAnimationsModule,
+    GooglePlaceModule,
     MatListModule,
     MatToolbarModule,
     MatInputModule,

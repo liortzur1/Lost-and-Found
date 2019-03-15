@@ -5,3 +5,8 @@
   .bar:hover {
     fill: brown;
   }
+
+  .bar-chart {
+    width: 18em;
+    height: 18em;
+  }

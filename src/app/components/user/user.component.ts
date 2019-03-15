@@ -25,6 +25,10 @@ export class User implements OnInit {
         Object.assign(this.userDetailsPrev, this.userDetails);
     }
 
+    public handleAddressChange(city) {
+        this.userDetails.city = city.formatted_address;
+    }
+
     saveChanges() {
         this.userServ.CreateOrUpdateUser(this.userDetails);
         Object.assign(this.userDetailsPrev, this.userDetails);

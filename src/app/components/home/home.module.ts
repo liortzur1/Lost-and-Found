@@ -17,6 +17,7 @@ import { SearchUsersComponent } from './../search-users/search-users.component';
 import { CreateItemComponent, CreateItemDialogComponent } from './../create-item/create-item.component';
 import { UpdateItemComponent } from './../update-item/update-item.component';
 import { ListMessagesComponent } from './../list-messages/list-messages.component'
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 import UserService from '../../services/user.service';
 
@@ -55,6 +56,7 @@ import { CreateMessageDialogComponent } from '../create-message/create-message-d
     ReactiveFormsModule,
     MatSidenavModule,
     BrowserAnimationsModule,
+    GooglePlaceModule,
     MatListModule,
     MatToolbarModule,
     MatInputModule,

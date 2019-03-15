@@ -1,4 +1,5 @@
 import { UserModel } from './user';
+import { ItemLocation } from './location';
 
 export class Item {
     _id: string;
@@ -8,7 +9,7 @@ export class Item {
     category: Category;
     color: string;
     create_time: Date;
-    location: string;
+    location: ItemLocation;
     username: string;
 
 }

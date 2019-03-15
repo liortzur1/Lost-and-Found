@@ -21,6 +21,10 @@ export class SignUp {
 
     }
 
+    public handleAddressChange(city) {
+      this.userDetails.city = city.formatted_address;
+    }
+
     addUser() {
       this.userServ.CreateOrUpdateUser(this.userDetails);
       this.globals.connectedUser = this.userDetails;

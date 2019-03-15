@@ -32,8 +32,8 @@ export class PieChart implements AfterViewInit {
     }
 
     private setup(): void {
-        this.width = 250;
-        this.height = 250;
+        this.width = 300;
+        this.height = 300;
         this.radius = Math.min(this.width, this.height) / 2;
     }
 

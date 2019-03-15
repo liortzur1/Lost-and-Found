@@ -114,4 +114,24 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+router.get('/itemsByCategory', (req, res) => {
+    item.aggregate([
+    {
+        $group: {
+            _id: "$category",
+            count: { $sum: 1 }
+        }
+    }]).exec(
+        (err, result) => {
+            if (err) {
+                next(err);
+            } else {
+                category.populate(result, {path: '_id'}, (err, popResult) => {
+                    res.write(JSON.stringify({ data: popResult}));
+                    res.end();
+                })
+            }
+        });
+})
+
 module.exports = router;

@@ -7,7 +7,7 @@ const itemSchema = Schema({
   category: { type: Schema.Types.ObjectId, ref: "category", required: true },
   color: { type: String, required: true },
   create_time: { type: Date, required: true },
-  location: { type: String, require: true },
+  location: { type: Object, require: true },
   username: { type: Schema.Types.ObjectId, ref: "user", required: true }
 });
 
