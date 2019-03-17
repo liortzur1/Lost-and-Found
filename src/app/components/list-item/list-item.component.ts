@@ -30,7 +30,7 @@ export class ListItemComponent implements OnInit {
   }
 
   edit(item:Item) {
-    const dialogRef = this.dialog.open(UpdateItemComponent, { data: item ,height: '520px', width: '900px'});
+    const dialogRef = this.dialog.open(UpdateItemComponent, { data: item ,height: '520px', width: '750px'});
 
     dialogRef.afterClosed().subscribe(result => {console.log( `Result: ${result}` )});
   }
