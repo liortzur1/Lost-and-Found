@@ -17,7 +17,8 @@ export class NavbarMenu implements OnInit {
 
   constructor(private globals: Globals,
               private custService: CustomerService,
-              private userService: UserService) {
+              private userService: UserService,
+              ) {
       this.globals.connectedUser = this.custService.getToken() as UserModel;
   }
 

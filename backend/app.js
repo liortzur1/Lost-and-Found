@@ -1,7 +1,7 @@
 const path = require("path");
 const app = require("express")();
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http,  { origins: '*:*', allowUpgrades: true, transports: ['websocket', 'flashsocket', 'polling'] });
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require('cors');
@@ -31,9 +31,16 @@ app.use('/api/items', items);
 app.use('/api/categories', categories);
 app.use('/api/messages', messages);
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "dist/LostAndFound", index.html));
-})
+})*/
+
+io.set('transports', ['websocket']);
+
+io.on('connection', socket => {
+  console.log('a user connected');
+  //socket.emit(Notify, {unread: 5})
+});
 
 //Listen to port 3000
 app.listen(port, () => {

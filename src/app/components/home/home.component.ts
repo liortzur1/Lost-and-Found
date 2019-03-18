@@ -14,7 +14,8 @@ export class Home {
 
   constructor(private route: ActivatedRoute, 
               private router: Router,
-              private globals: Globals) {
+              private globals: Globals,
+              ) {
 
   }
   
@@ -25,5 +26,7 @@ export class Home {
       subscribe(params => {
         this.user = this.globals.connectedUser;
     })
+
   }
+
 }
