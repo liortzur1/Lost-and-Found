@@ -83,15 +83,11 @@ router.put('/:id', (req, res) => {
             res.json({ success: false, message: `Failed to find item to update. Error: ${err}` });
         }
         else {
-            let cate = category.getCategoryByName(req.body.category).then(function(cat){return cat;});
             result.name = req.body.name;
             result.description = req.body.description;
-            //result.category = cat;
             result.color = req.body.color;
             result.create_time = req.body.create_time;
             result.location = req.body.location;
-            console.log(result);
-            console.log(cate);
             result.save(err => {
                 if (err) {
                     res.json({ success: false, message: `Failed to save updated item. Error: ${err}` });

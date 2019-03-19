@@ -48,6 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
 import { CreateMessageDialogComponent } from '../create-message/create-message-dialog.component';
+import { NewMessageDialogComponent } from '../new-message-dialog/new-message-dialog.component';
 
 @NgModule({
   imports: [
@@ -101,7 +102,8 @@ import { CreateMessageDialogComponent } from '../create-message/create-message-d
     PieChart,
     BarChartComponent,
     ListMessagesComponent,
-    CreateMessageDialogComponent
+    CreateMessageDialogComponent,
+    NewMessageDialogComponent
   ],
   providers: [UserService],
   entryComponents: [
@@ -111,7 +113,9 @@ import { CreateMessageDialogComponent } from '../create-message/create-message-d
     CreateItemDialogComponent,
     UpdateItemComponent,
     ListItemComponent,
-    CreateMessageDialogComponent
+    CreateMessageDialogComponent,
+    NewMessageDialogComponent,
+    Home
   ],
   bootstrap: [Home]
 })

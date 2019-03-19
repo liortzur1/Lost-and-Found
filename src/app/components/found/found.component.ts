@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Kind } from 'src/app/models/item';
+import { WebsocketService } from 'src/app/services/WebSockets.service';
 
 @Component({
   selector: 'found',
@@ -8,4 +9,6 @@ import { Kind } from 'src/app/models/item';
 })
 export class Found {
   scope_kind = Kind.Found;
+
+
 }
