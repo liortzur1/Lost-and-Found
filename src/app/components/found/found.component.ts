@@ -10,5 +10,5 @@ import { WebsocketService } from 'src/app/services/WebSockets.service';
 export class Found {
   scope_kind = Kind.Found;
 
-  constructor(private socket: WebsocketService) {}
+
 }

@@ -1,7 +1,7 @@
 const path = require("path");
 const app = require("express")();
 const http = require('http').Server(app);
-const io = require('socket.io')(http,  { origins: '*:*', allowUpgrades: true, transports: ['websocket', 'flashsocket', 'polling'] });
+const io = require('socket.io')(http);
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require('cors');
@@ -10,6 +10,8 @@ const users = require('./controllers/users');
 const items = require('./controllers/items');
 const categories = require('./controllers/categories');
 const messages = require('./controllers/messages');
+global.io = io;
+
 // Connect mongoose to our database
 mongoose.connect(config.database);
 
@@ -31,22 +33,46 @@ app.use('/api/items', items);
 app.use('/api/categories', categories);
 app.use('/api/messages', messages);
 
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "dist/LostAndFound", index.html));
-})*/
+})
 
-io.set('transports', ['websocket']);
+var clients = [];
+global.clients = clients;
 
 io.on('connection', socket => {
-  console.log('a user connected');
-  //socket.emit(Notify, {unread: 5})
+  
+  console.log('user connected');
+
+  socket.on('sendUser', (id)=>{
+    clients.push({
+      id: id,
+      "socket": socket.id
+    });
+    console.log(clients);
+
+  });
+  
+  socket.on('disconnect', function(){
+    var index = clients.find((client, i) =>{
+      if (client.socket == socket.id) {
+        return i;
+      }
+    });
+    clients.splice(index, 1);
+    console.log(clients);
+    console.log('user disconnected');
+  });
+  
+
 });
 
 //Listen to port 3000
-app.listen(port, () => {
+http.listen(port, () => {
   console.log(`Starting the server at port ${port}`);
 });
 
 
 
 module.exports = app;
+

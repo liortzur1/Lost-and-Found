@@ -3,7 +3,6 @@ import * as socketIo from 'socket.io-client';
 import * as Rx from 'rxjs';
 import { Observable } from 'rxjs';
 
-const SERVER_URL = "http://localhost:3000/";
 
 @Injectable({providedIn: 'root'})
 export class WebsocketService {
@@ -11,8 +10,20 @@ export class WebsocketService {
   private socket;
 
   constructor() {
-    this.socket = socketIo('http://localhost:3000',{ transports : ['websocket'] });
+    this.socket = socketIo();
    }
+
+   sendUserID(id: string) {
+     this.socket.emit('sendUser', id);
+   }
+
+   public newMessage = () => {
+    return Observable.create((observer) => {
+        this.socket.on('newMessage', (message) => {
+            observer.next(message);
+        });
+    });
+}
 
 
 

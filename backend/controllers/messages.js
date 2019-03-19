@@ -22,6 +22,17 @@ router.post('/', (req, res, next) => {
             }
             else {
                 res.json({success:true, message: `Message Added successfully.`, message: newMessage});
+
+                var index = -1;
+                global.clients.find((client, i) =>{
+                    if (client.id == req.body.toUser) {
+                        index = i;
+                        return true;
+                    }
+                });
+                if (index != -1) {
+                    global.io.sockets.connected[global.clients[index].socket].emit('newMessage', req.body.title);
+                }
             }
         });
 });
