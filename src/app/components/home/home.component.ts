@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Globals } from './../utils/Globals';
 import { WebsocketService } from 'src/app/services/WebSockets.service';
-import { Socket } from 'dgram';
 import { MatDialog } from '@angular/material';
 import { NewMessageDialogComponent } from '../new-message-dialog/new-message-dialog.component';
 
