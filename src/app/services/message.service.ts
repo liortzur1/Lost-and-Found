@@ -27,6 +27,11 @@ export class MessageService {
       return this.http.get(URI).pipe(map(res => res.json()));
     }
 
+    getMessagesByUser(userID: string) {
+      let URI = `${this.serverApi}/byuser/${userID}`;
+      return this.http.get(URI).pipe(map(res => res.json()));
+    }
+
     getMessagesUpdatelistener() {
       return this.messagesUpdate.asObservable();
     }

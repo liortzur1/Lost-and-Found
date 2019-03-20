@@ -15,14 +15,15 @@ const messagesList = module.exports = mongoose.model("message", messageSchema);
 
 module.exports.getMessagesByUsername = (username) => {
     return new Promise((resolve, reject) => {
-        messagesList.find()
+        let query = { toUser: username };
+        messagesList.find(query)
             .populate("fromUser")
             .populate("toUser").exec((err, messages) => {
                 if (err) {
                     reject(new Error(err));
                 }
                 else {
-                    resolve(messages.filter(msg => msg.fromUser.username == username || msg.toUser.username == username));
+                    resolve(messages);
                 }
             });
     });

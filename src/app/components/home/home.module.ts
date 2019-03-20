@@ -49,6 +49,8 @@ import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
 import { CreateMessageDialogComponent } from '../create-message/create-message-dialog.component';
 import { NewMessageDialogComponent } from '../new-message-dialog/new-message-dialog.component';
+import { MyMessagesComponent } from '../my-messages/my-messages.component';
+import { MyItemsComponent } from '../my-items/my-items.component';
 
 @NgModule({
   imports: [
@@ -103,7 +105,9 @@ import { NewMessageDialogComponent } from '../new-message-dialog/new-message-dia
     BarChartComponent,
     ListMessagesComponent,
     CreateMessageDialogComponent,
-    NewMessageDialogComponent
+    NewMessageDialogComponent,
+    MyMessagesComponent,
+    MyItemsComponent
   ],
   providers: [UserService],
   entryComponents: [
