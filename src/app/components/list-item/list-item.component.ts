@@ -14,6 +14,7 @@ import { CreateMessageDialogComponent } from '../create-message/create-message-d
 })
 export class ListItemComponent implements OnInit {
   @Input() scope_kind:Kind;
+  @Input() user_id:string;
 
   items: Item[];
   private itemsSub: Subscription;
@@ -23,9 +24,16 @@ export class ListItemComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.itemService.getItemsByKind(this.scope_kind).subscribe(res => { this.items = res.items.filter(
-      item => item.kind == this.scope_kind
-  ) });
+    
+    if(this.scope_kind != null) {
+      this.itemService.getItemsByKind(this.scope_kind).subscribe(res => { this.items = res.items.filter(
+        item => item.kind == this.scope_kind
+      ) });
+    }
+
+    else if (this.user_id != null) {
+      this.itemService.getItemsByKind(this.scope_kind).subscribe(res => { this.items = res.items});
+    }
     this.itemsSub = this.itemService.getItemsUpdatelistener().subscribe((items:Item[]) => {this.items = items});
   }
 

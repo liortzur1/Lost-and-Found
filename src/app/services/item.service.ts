@@ -14,7 +14,7 @@ export class ItemService {
 
       constructor(private http: Http) { }
     
-      getItems(){
+    getItems(){
         let URI = `${this.serverApi}/items`;
         var obs = this.http.get(URI).pipe(map(res => res.json()));
         obs.subscribe(res => { this.items = res.items });
@@ -27,6 +27,13 @@ export class ItemService {
         obs.subscribe(res => { this.items = res.items.filter(
             item => item.kind == kind
         ) });
+        return obs;
+    }
+
+    getItemsByUser(user_id: string){
+        let URI = `${this.serverApi}/items/byUser/${user_id}`;
+        var obs = this.http.get(URI).pipe(map(res => res.json()));
+        obs.subscribe(res => { this.items = res.items });
         return obs;
     }
 
