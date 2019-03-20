@@ -72,14 +72,24 @@ router.get('/amount/:username', (req, res) => {
         })
 });
 
-//TODO: valadition (?) - if the items belogns to the user
-router.delete('/:id', (req, res) => {
-    item.deleteOne({ _id: req.params.id }, err => {
-        if (err)
-            res.json({ success: false, message: `Failed to delete item. Error: ${err}` });
-        else
-            res.sendStatus(200);
-    });
+router.put('/markAsRead/:id', (req, res) => {
+    message.findById({_id: req.params.id}, (err, result) => {
+        if (err) {
+            res.json({ success: false, message: `Failed to find message to update. Error: ${err}` });
+        }
+        else {
+            result.isRead = true;
+            result.save((err) => {
+                if (err) {
+                    res.json({ success: false, message: `Failed to save updated message. Error: ${err}` });
+                }
+                else {
+                    res.json({ success: true, message: "Message marked as read successfully." });
+                }
+            })
+        }
+    })
 });
+
 
 module.exports = router; 

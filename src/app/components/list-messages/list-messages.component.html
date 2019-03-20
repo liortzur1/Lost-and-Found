@@ -9,7 +9,7 @@
 <div *ngIf="messagesLength > 0">
   <div style="margin-top: 20px">
     <mat-accordion>
-        <mat-expansion-panel *ngFor="let message of messages" hideToggle>
+        <mat-expansion-panel *ngFor="let message of messages" hideToggle (opened)="onExpand(message)">
             <mat-expansion-panel-header>
               <mat-panel-title>{{message.title}}</mat-panel-title>
               <mat-panel-description>{{formatDate(message.create_time)}}</mat-panel-description>  

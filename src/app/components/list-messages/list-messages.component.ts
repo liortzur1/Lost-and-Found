@@ -5,6 +5,7 @@ import {MessageService} from '../../services/message.service';
 import { Subject, Subscription } from 'rxjs';
 import { CreateMessageDialogComponent } from '../create-message/create-message-dialog.component';
 import { MatDialog } from '@angular/material';
+import { Globals } from '../utils/Globals';
 
 @Component({
   selector: 'app-list-messages',
@@ -21,7 +22,7 @@ export class ListMessagesComponent implements OnInit {
 
   messages: Message[];
 
-  constructor(public messageService:MessageService, public dialog: MatDialog) { }
+  constructor(public messageService:MessageService, public dialog: MatDialog, private globals: Globals) { }
 
   ngOnInit() {
     this.messageService.getMessagesByItem(this.item).subscribe(res => { this.messages = res.messages.sort(this.dateSort); });
@@ -55,6 +56,13 @@ export class ListMessagesComponent implements OnInit {
       return this.messages.length;
     }
     return 0;
+  }
+
+  onExpand(message){
+    if(!message.isRead && (this.globals.connectedUser._id == message.toUser._id))
+    {
+      this.messageService.markAsRead(message);
+    }
   }
 
 

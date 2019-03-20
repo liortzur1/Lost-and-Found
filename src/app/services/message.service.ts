@@ -51,7 +51,24 @@ export class MessageService {
           }
           
           );
-  }
+    }
+
+    markAsRead(updMessage: Message) {
+      var headers = new Headers();
+      let URI = `${this.serverApi}/markAsRead/`+updMessage._id;
+      headers.append('Content-type', 'application/json');
+      this.http.put(URI, JSON.stringify(updMessage),{ headers: headers }).subscribe(
+          data  => {
+          console.log("PUT Request marked message as read successfully.", data);
+          },
+          error  => {
+          
+          console.log("Error updating message", error);
+          
+          }
+          
+          );
+    }
 
 
 

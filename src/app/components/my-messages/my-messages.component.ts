@@ -36,4 +36,11 @@ export class MyMessagesComponent implements OnInit {
     return 0;
   }
 
+  onExpand(message){
+    if(!message.isRead)
+    {
+      this.messageService.markAsRead(message);
+    }
+  }
+
 }

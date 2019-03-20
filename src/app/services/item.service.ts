@@ -67,7 +67,7 @@ export class ItemService {
         headers.append('Content-type', 'application/json');
         this.http.put(URI, JSON.stringify(updItem),{ headers: headers }).subscribe(
             data  => {
-            console.log("POST Request created item successfully.", data);
+            console.log("PUT Request updated item successfully.", data);
             },
             error  => {
             
