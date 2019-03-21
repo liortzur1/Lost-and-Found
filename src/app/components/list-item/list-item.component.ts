@@ -30,11 +30,11 @@ export class ListItemComponent implements OnInit {
         item => item.kind == this.scope_kind
       ) });
     }
-
+/*
     else if (this.user_id != null) {
-      this.itemService.getItemsByKind(this.scope_kind).subscribe(res => { this.items = res.items});
+      this.itemService.getItemsByUser(this.user_id).subscribe(res => { this.items = res.items});
     }
-    this.itemsSub = this.itemService.getItemsUpdatelistener().subscribe((items:Item[]) => {this.items = items});
+    this.itemsSub = this.itemService.getItemsUpdatelistener().subscribe((items:Item[]) => {this.items = items});*/
   }
 
   edit(item:Item) {

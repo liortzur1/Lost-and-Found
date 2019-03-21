@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Globals } from '../utils/Globals';
-import { connect } from 'http2';
 
 @Component({
   selector: 'my-activity',
