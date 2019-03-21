@@ -36,6 +36,11 @@ export class MessageService {
       return this.messagesUpdate.asObservable();
     }
 
+    getItemsAmountByUser(user_id: string){
+      let URI = `${this.serverApi}/amount/${user_id}`;
+      return this.http.get(URI).pipe(map(res => res.json()));
+  }
+
     createMessage(newMessage:Message){
       var headers = new Headers();
       let URI = `${this.serverApi}`;

@@ -39,7 +39,8 @@ import {
   MatListModule,
   MatTableModule,
   MatFormFieldModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatChipsModule
 } from '@angular/material';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -78,6 +79,7 @@ import { MyItemsComponent } from '../my-items/my-items.component';
     MatIconModule,
     RouterModule,
     MatTooltipModule,
+    MatChipsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDe2cx9NLqtDipMKZ1J2EeioMAn2W9L_20'
     })

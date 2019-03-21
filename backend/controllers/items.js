@@ -80,7 +80,7 @@ router.post('/', (req, res, next) => {
                         res.sendStatus(500);
                     }
                     else {
-                        res.json({ success: true, message: "Added successfully." });
+                        res.json({ success: true, message: "Added successfully.", item: newItem.populate("username") });
                     }
                 })
             }

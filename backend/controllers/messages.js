@@ -68,7 +68,7 @@ router.get('/amount/:username', (req, res) => {
         })
         .catch(err => {
             console.error(err);
-            res.sendStatus(500);
+            res.json({ amount: 0 });
         })
 });
 

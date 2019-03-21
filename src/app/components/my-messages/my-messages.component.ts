@@ -16,7 +16,8 @@ export class MyMessagesComponent implements OnInit {
   constructor(public messageService:MessageService, private globals: Globals) { }
 
   ngOnInit() {
-    this.messageService.getMessagesByUser(this.globals.connectedUser._id).subscribe(res => { this.messages = res.messages.sort(this.dateSort); });
+    this.messageService.getMessagesByUser(this.globals.connectedUser._id).subscribe(res => { this.messages = res.messages.sort(this.dateSort)
+      .filter(message => message.isRead == false); });
   }
 
   dateSort(a, b) {

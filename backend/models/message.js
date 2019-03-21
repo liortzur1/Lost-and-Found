@@ -18,7 +18,7 @@ module.exports.getMessagesByUsername = (username) => {
         let query = { toUser: username };
         messagesList.find(query)
             .populate("fromUser")
-            .populate("toUser").exec((err, messages) => {
+            .populate("toUser").populate("item").exec((err, messages) => {
                 if (err) {
                     reject(new Error(err));
                 }
@@ -37,7 +37,7 @@ module.exports.getMessagesByItem = (item_id, callback) => {
 module.exports.totalMessagesAmount = (username) => {
     return new Promise((resolve, reject) => {
         messagesList.getMessagesByUsername(username).then(messages => {
-            resolve(messages.map(msg => 1).reduce((sum, currentMsg) => sum + currentMsg));
+            resolve(messages.filter(message => (message.isRead == false)).map(msg => 1).reduce((sum, currentMsg) => sum + currentMsg));
         }).catch(reject)
     })
 } 

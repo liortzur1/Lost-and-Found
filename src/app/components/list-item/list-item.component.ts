@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {UpdateItemComponent} from '../update-item/update-item.component';
 import { CreateMessageDialogComponent } from '../create-message/create-message-dialog.component'
+import { Globals } from '../utils/Globals';
 
 @Component({
   selector: 'app-list-item',
@@ -19,7 +20,7 @@ export class ListItemComponent implements OnInit {
   items: Item[];
   private itemsSub: Subscription;
 
-  constructor(public itemService: ItemService, public dialog: MatDialog) {
+  constructor(public itemService: ItemService, public dialog: MatDialog, private global: Globals) {
     
    }
 
@@ -30,11 +31,11 @@ export class ListItemComponent implements OnInit {
         item => item.kind == this.scope_kind
       ) });
     }
-/*
+
     else if (this.user_id != null) {
       this.itemService.getItemsByUser(this.user_id).subscribe(res => { this.items = res.items});
     }
-    this.itemsSub = this.itemService.getItemsUpdatelistener().subscribe((items:Item[]) => {this.items = items});*/
+    this.itemsSub = this.itemService.getItemsUpdatelistener().subscribe((items:Item[]) => {this.items = items});
   }
 
   edit(item:Item) {
@@ -60,6 +61,15 @@ export class ListItemComponent implements OnInit {
   {
     let formatted = new Date (date);
     return formatted.toLocaleDateString('en-US', { hour12: false, month: 'long', day:'numeric', year:'numeric'});
+  }
+
+  isChangable(item)
+  {
+    if (this.global.connectedUser._id == item.username._id || this.global.connectedUser.admin == true) {
+      return true;
+    }
+
+    return false;
   }
 
 }

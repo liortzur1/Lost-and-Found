@@ -58,6 +58,8 @@ export class ItemService {
         this.http.post(URI, JSON.stringify(newItem),{ headers: headers }).subscribe(
             data  => {
             console.log("POST Request created item successfully.", data);
+            this.items.push(data.json().item);
+            this.itemsUpdate.next([...this.items]);
             },
             error  => {
             

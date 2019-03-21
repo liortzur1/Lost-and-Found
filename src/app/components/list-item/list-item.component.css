@@ -40,3 +40,7 @@ td:first-child {
   height:auto;
   display:inline-block;
 }
+
+.noItems{
+  color: dimgrey;
+}

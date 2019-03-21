@@ -30,7 +30,7 @@
         {{item.description}}
       </div>
       <app-list-messages [item]="item"></app-list-messages>
-      <div id="edit-btn">
+      <div id="edit-btn" *ngIf="isChangable(item)">
         <button mat-mini-fab color="warn" matTooltip="Delete item" (click)="delete(item)">
             <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
@@ -41,5 +41,5 @@
       </div>
   </mat-expansion-panel>
 </mat-accordion>
-<p *ngIf="itemsLenght <= 0">No items found.</p>
+<p class="noItems" *ngIf="itemsLenght <= 0">No items found.</p>
 
