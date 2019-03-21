@@ -14,7 +14,7 @@ export class ItemService {
 
       constructor(private http: Http) { }
     
-      getItems(){
+    getItems(){
         let URI = `${this.serverApi}/items`;
         var obs = this.http.get(URI).pipe(map(res => res.json()));
         obs.subscribe(res => { this.items = res.items });
@@ -25,8 +25,16 @@ export class ItemService {
         let URI = `${this.serverApi}/items`;
         var obs = this.http.get(URI).pipe(map(res => res.json()));
         obs.subscribe(res => { this.items = res.items.filter(
-            item => item.kind == kind
-        ) });
+            item => item.kind == kind);
+            this.itemsUpdate.next([...this.items]);
+         });
+        return obs;
+    }
+
+    getItemsByUser(user_id: string){
+        let URI = `${this.serverApi}/items/byUser/${user_id}`;
+        var obs = this.http.get(URI).pipe(map(res => res.json()));
+        obs.subscribe(res => { this.items = res.items });
         return obs;
     }
 
@@ -51,6 +59,8 @@ export class ItemService {
         this.http.post(URI, JSON.stringify(newItem),{ headers: headers }).subscribe(
             data  => {
             console.log("POST Request created item successfully.", data);
+            this.items.push(data.json().item);
+            this.itemsUpdate.next([...this.items]);
             },
             error  => {
             
@@ -67,7 +77,7 @@ export class ItemService {
         headers.append('Content-type', 'application/json');
         this.http.put(URI, JSON.stringify(updItem),{ headers: headers }).subscribe(
             data  => {
-            console.log("POST Request created item successfully.", data);
+            console.log("PUT Request updated item successfully.", data);
             },
             error  => {
             

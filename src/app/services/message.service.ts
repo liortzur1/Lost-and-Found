@@ -27,9 +27,19 @@ export class MessageService {
       return this.http.get(URI).pipe(map(res => res.json()));
     }
 
+    getMessagesByUser(userID: string) {
+      let URI = `${this.serverApi}/byuser/${userID}`;
+      return this.http.get(URI).pipe(map(res => res.json()));
+    }
+
     getMessagesUpdatelistener() {
       return this.messagesUpdate.asObservable();
     }
+
+    getItemsAmountByUser(user_id: string){
+      let URI = `${this.serverApi}/amount/${user_id}`;
+      return this.http.get(URI).pipe(map(res => res.json()));
+  }
 
     createMessage(newMessage:Message){
       var headers = new Headers();
@@ -46,7 +56,24 @@ export class MessageService {
           }
           
           );
-  }
+    }
+
+    markAsRead(updMessage: Message) {
+      var headers = new Headers();
+      let URI = `${this.serverApi}/markAsRead/`+updMessage._id;
+      headers.append('Content-type', 'application/json');
+      this.http.put(URI, JSON.stringify(updMessage),{ headers: headers }).subscribe(
+          data  => {
+          console.log("PUT Request marked message as read successfully.", data);
+          },
+          error  => {
+          
+          console.log("Error updating message", error);
+          
+          }
+          
+          );
+    }
 
 
 

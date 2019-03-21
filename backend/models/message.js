@@ -15,14 +15,15 @@ const messagesList = module.exports = mongoose.model("message", messageSchema);
 
 module.exports.getMessagesByUsername = (username) => {
     return new Promise((resolve, reject) => {
-        messagesList.find()
+        let query = { toUser: username };
+        messagesList.find(query)
             .populate("fromUser")
-            .populate("toUser").exec((err, messages) => {
+            .populate("toUser").populate("item").exec((err, messages) => {
                 if (err) {
                     reject(new Error(err));
                 }
                 else {
-                    resolve(messages.filter(msg => msg.fromUser.username == username || msg.toUser.username == username));
+                    resolve(messages);
                 }
             });
     });
@@ -36,7 +37,7 @@ module.exports.getMessagesByItem = (item_id, callback) => {
 module.exports.totalMessagesAmount = (username) => {
     return new Promise((resolve, reject) => {
         messagesList.getMessagesByUsername(username).then(messages => {
-            resolve(messages.map(msg => 1).reduce((sum, currentMsg) => sum + currentMsg));
+            resolve(messages.filter(message => (message.isRead == false)).map(msg => 1).reduce((sum, currentMsg) => sum + currentMsg));
         }).catch(reject)
     })
 } 

@@ -2,12 +2,25 @@ const express = require('express');
 const router = express.Router();
 const item = require('../models/item');
 const user = require('../models/user');
+const message = require('../models/message');
 const category = require('../models/category');
 
 router.get('/', (req, res) => {
     item.getAllItems((err, items) => {
         if (err) {
             res.json({ success: false, message: `Failed to load all items. Error: ${err}` });
+        }
+        else {
+            res.write(JSON.stringify({ success: true, items: items }, null, 2));
+            res.end();
+        }
+    });
+});
+
+router.get('/byUser/:user_id', (req, res) => {
+    item.getItemsByUser(req.params.user_id, (err, items) => {
+        if (err) {
+            res.json({ success: false, message: `Failed to load items by user ${req.params.user_id}. Error: ${err}` });
         }
         else {
             res.write(JSON.stringify({ success: true, items: items }, null, 2));
@@ -68,7 +81,7 @@ router.post('/', (req, res, next) => {
                         res.sendStatus(500);
                     }
                     else {
-                        res.json({ success: true, message: "Added successfully." });
+                        res.json({ success: true, message: "Added successfully.", item: newItem.populate("username") });
                     }
                 })
             }
@@ -100,13 +113,15 @@ router.put('/:id', (req, res) => {
     })
 })
 
-//TODO: valadition (?) - if the items belogns to the user
 router.delete('/:id', (req, res) => {
-    item.deleteOne({ _id: req.params.id }, err => {
+    var id = req.params.id;
+    item.deleteOne({ _id: id }, err => {
         if (err)
             res.json({ success: false, message: `Failed to delete item. Error: ${err}` });
-        else
+        else {
+            message.deleteMany({item: id}, err => { if(err) {console.log(err)} });
             res.sendStatus(200);
+        }    
     });
 });
 
