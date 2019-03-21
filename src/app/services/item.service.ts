@@ -25,8 +25,9 @@ export class ItemService {
         let URI = `${this.serverApi}/items`;
         var obs = this.http.get(URI).pipe(map(res => res.json()));
         obs.subscribe(res => { this.items = res.items.filter(
-            item => item.kind == kind
-        ) });
+            item => item.kind == kind);
+            this.itemsUpdate.next([...this.items]);
+         });
         return obs;
     }
 

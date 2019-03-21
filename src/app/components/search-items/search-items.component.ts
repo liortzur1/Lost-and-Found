@@ -26,9 +26,8 @@ export class SearchItemsComponent implements OnInit {
     this.itemService.searchItems(this.item.name, this.scope_kind, this.item.category, this.item.create_time);
   }
 
-  get aa()
-  {
-    return JSON.stringify(this.item);
+  onReset() {
+    this.itemService.getItemsByKind(this.scope_kind);
   }
 
   get categories()

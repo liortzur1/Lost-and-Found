@@ -1,7 +1,7 @@
 <mat-grid-list cols="4" rowHeight="3:1">
   <form (ngSubmit)="onSearchItem()" #searchForm="ngForm">
   <mat-grid-tile>
-    <div>
+    <div class="first">
       <mat-form-field appearance="outline">
         <mat-label>Item name</mat-label>
         <input matInput placeholder="Item name" name="name" [(ngModel)]="item.name">
@@ -30,7 +30,9 @@
   </mat-grid-tile>
 
   <mat-grid-tile>
-    <button type="submit" mat-stroked-button >Search</button>
+    <button type="submit" mat-stroked-button cdkFocusInitial color="primary">Search</button>
+    <div class="divider"></div>
+    <button type="reset" mat-stroked-button (click)="onReset()">Reset</button>
   </mat-grid-tile>
 </form>
 </mat-grid-list>
