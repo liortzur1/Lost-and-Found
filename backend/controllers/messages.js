@@ -91,5 +91,16 @@ router.put('/markAsRead/:id', (req, res) => {
     })
 });
 
+router.get('/all/all', (req, res) => {
+    message.getAllMessages((err, allMessages) => {
+        if (err) {
+            res.json({ err });
+        }
+        else {
+            res.json({ allMessages });
+        }
+    })
+});
+
 
 module.exports = router; 

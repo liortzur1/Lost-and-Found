@@ -7,10 +7,11 @@
   </div>
   <div class="chartsDiv">
     <div class="pieChart" *ngIf="pieChartData">
+      <h2>Items by category</h2>
       <pie-chart [pieData]="pieChartData"></pie-chart>
     </div>
     <div class="barChart">
-        <bar-chart [data]="barChartData"></bar-chart>
+        <h4>Users who sent messages: {{allMessages | messagesPipe}}</h4>
     </div>
   </div>
 </div>

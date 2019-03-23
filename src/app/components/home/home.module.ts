@@ -1,4 +1,4 @@
-
+import { MessagesPipe } from './../../models/messagesPipe.pipe';
 import { BarChartComponent } from './../bar-chart/bar-chart.component';
 import { PieChart } from './../pie-chart/pie-chart.component';
 import { NgModule } from '@angular/core';
@@ -109,7 +109,8 @@ import { MyItemsComponent } from '../my-items/my-items.component';
     CreateMessageDialogComponent,
     NewMessageDialogComponent,
     MyMessagesComponent,
-    MyItemsComponent
+    MyItemsComponent,
+    MessagesPipe
   ],
   providers: [UserService],
   entryComponents: [

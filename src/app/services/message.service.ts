@@ -41,6 +41,11 @@ export class MessageService {
       return this.http.get(URI).pipe(map(res => res.json()));
   }
 
+  getAllMessages() {
+    let URI = `${this.serverApi}/all/all`;
+    return this.http.get(URI).pipe(map(res => res.json()));
+  }
+
     createMessage(newMessage:Message){
       var headers = new Headers();
       let URI = `${this.serverApi}`;
