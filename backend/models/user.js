@@ -5,7 +5,7 @@ const userSchema = Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   fullName: { type: String, required: true },
-  mail: { type: String, required: true },
+  mail: { type: String, required: true, unique: true },
   phone: { type: String, required: true },
   city: { type: String, required: true },
   admin: { type: Boolean, require: true },
@@ -29,16 +29,23 @@ module.exports.getAllUsers = (callback) => usersList.find().populate(
   }
 ).exec(callback);
 
-module.exports.getUserByUsernameAndPassword = (username, password, callback) => {
-  let query = { username: username, password: password };
+module.exports.getUserByMailAndPassword = (mail, password, callback) => {
+  let query = { mail: mail, password: password };
   return (usersList.findOne(query).populate("items").exec(callback));
 }
+
+module.exports.getUserByID = (id, callback) => {
+  let query = { _id: id };
+  return (usersList.findOne(query).populate("items").exec(callback));
+}
+
+module.exports.editUser = (editedUser, callback) => usersList.findOneAndUpdate({ mail: editedUser.mail }, editedUser, {upsert: true, new: true, runValidators: true}, callback);
 
 module.exports.addUser = (newUser, callback) => newUser.save(callback);
 
 //TODO: remove all users' items
-module.exports.deleteUserByUsername = (username, callback) => {
-  usersList.findOne({ username }, (err, user) => {
+module.exports.deleteUserByMail = (mail, callback) => {
+    usersList.findOne({ mail }, (err, user) => {
     if (err) {
       console.error(err);
     }
@@ -47,13 +54,32 @@ module.exports.deleteUserByUsername = (username, callback) => {
       user.items.forEach(currentItem => {
         item.remove({ _id: currentItem._id });
       })
-      usersList.remove({ username }, callback);
+      usersList.remove({ mail }, callback);
     }
   })
 }
 
-module.exports.addItemToUser = (item, username, callback) => {
-  usersList.findOne({ username }, (err, user) => {
+
+module.exports.getUsers = (usernames) => {
+  return new Promise((resolve, reject) => {
+    const query = { 'username': { '$in': usernames } };
+    usersList.find(query, (err, users) => {
+      if (err) {
+        reject(err);
+      }
+      else {
+        resolve(users.sort((user1, user2) => {
+          let index1 = usernames.findIndex(elem => elem == user1.username);
+          let index2 = usernames.findIndex(elem => elem == user2.username);
+          return index1 - index2;
+        }));
+      }
+    })
+  });
+}
+
+module.exports.addItemToUser = (item, mail, callback) => {
+    usersList.findOne({ mail }, (err, user) => {
     if (err || !user || !user.items) {
       console.error(err);
       callback(err);

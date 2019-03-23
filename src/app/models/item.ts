@@ -1,12 +1,15 @@
+import { UserModel } from './user';
+import { ItemLocation } from './location';
+
 export class Item {
-    _id: number;
+    _id: string;
     name: string;
     description: string;
     kind: Kind;
     category: Category;
     color: string;
     create_time: Date;
-    location: string;
+    location: ItemLocation;
     username: string;
 
 }

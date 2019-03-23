@@ -3,11 +3,16 @@
       width: 100%; display: flex; align-items: flex-end;
     }
 
+    mat-form-field {
+      width: 100%;
+      align-self: left;
+    }
+
 </style>
 <form (ngSubmit)="onSubmit()" #createForm="ngForm">
 <h2 mat-dialog-title>Report a new lost or found item</h2>
 <mat-dialog-content>
-  <mat-grid-list cols="3" rowHeight="3:1">  
+  <mat-grid-list cols="3" rowHeight="3:1" gutterSize="10px">  
     <mat-grid-tile>
       <div>
           <mat-form-field appearance="outline">
@@ -24,7 +29,7 @@
       <div>
         <mat-form-field appearance="outline">
           <mat-label>Item name</mat-label>
-          <input matInput placeholder="Item name" name="name" [(ngModel)]="item.name" required>
+          <input matInput placeholder="e.g. iPhone XS" name="name" [(ngModel)]="item.name" required>
         </mat-form-field>
       </div>
     </mat-grid-tile>
@@ -44,7 +49,7 @@
       <div>
           <mat-form-field appearance="outline">
             <mat-label>Color</mat-label>
-            <input matInput placeholder="Color" name="color" [(ngModel)]="item.color" required>
+            <input matInput placeholder="e.g. White" name="color" [(ngModel)]="item.color" required>
           </mat-form-field>
       </div>
     </mat-grid-tile>
@@ -52,7 +57,7 @@
       <div>
           <mat-form-field appearance="outline">
             <mat-label>Location</mat-label>
-            <input matInput placeholder="Location" name="location" [(ngModel)]="item.location" required>
+            <input ngx-google-places-autocomplete matInput placeholder="e.g. 42 st. Subway, NYC" name="location" [(ngModel)]="item.location.name" (onAddressChange)="handleAddressChange($event)" required>
           </mat-form-field>
       </div>
     </mat-grid-tile>

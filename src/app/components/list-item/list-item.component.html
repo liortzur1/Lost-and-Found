@@ -2,13 +2,13 @@
   <mat-expansion-panel *ngFor="let item of items">
     <mat-expansion-panel-header>
       <mat-panel-title>{{item.name}}</mat-panel-title>
-      <mat-panel-description>{{item.location}}</mat-panel-description>
+      <mat-panel-description>{{item.location.name}}</mat-panel-description>
     </mat-expansion-panel-header>
-    <h4>Report details</h4>
+    <h3>Report details</h3>
     <table>
         <tr>
             <td>Created by</td>
-            <td>{{usernameById(item.username)}}</td>
+            <td>{{item.username.fullName}}</td>
         </tr>
         <tr>
             <td>Category</td>
@@ -24,21 +24,22 @@
         </tr>
       </table>
     <br>
-    <div>
+    <div class="item-desc">
         <b>Description</b>
         <br>
         {{item.description}}
       </div>
-      <div id="edit-btn">
-        <button mat-mini-fab color="warn" (click)="delete(item)">
-            <mat-icon aria-label="Edit">delete</mat-icon>
+      <app-list-messages [item]="item"></app-list-messages>
+      <div id="edit-btn" *ngIf="isChangable(item)">
+        <button mat-mini-fab color="warn" matTooltip="Delete item" (click)="delete(item)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
         <div class="divider"></div>
-        <button mat-mini-fab color="primary" (click)="edit(item)">
+        <button mat-mini-fab color="primary" matTooltip="Edit item Details" (click)="edit(item)">
             <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
       </div>
   </mat-expansion-panel>
 </mat-accordion>
-<p *ngIf="itemsLenght <= 0">No items found.</p>
+<p class="noItems" *ngIf="itemsLenght <= 0">No items found.</p>
 

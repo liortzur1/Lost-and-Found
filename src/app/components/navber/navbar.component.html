@@ -2,20 +2,18 @@
     <mat-toolbar>
         <div class="navbar-header">
             <mat-toolbar-row>
-                <img class="profilePic"/>
-            </mat-toolbar-row>
-            <mat-toolbar-row>    
-                <h3>{{user.fullName}}</h3>
+                <img src="../../../assets/img/lost-found-banner.png"/>
             </mat-toolbar-row>
         </div>
     </mat-toolbar>
     <mat-nav-list>
+        <a class="username" mat-list-item routerLink='/home/user'><h3>{{user.fullName}}</h3></a>
         <mat-divider></mat-divider>
-        <a mat-list-item routerLink="/my-activity">My activity</a>
-        <a mat-list-item routerLink="/lost">Losts</a>
-        <a mat-list-item routerLink="/found">Founds</a>
+        <a mat-list-item routerLink='/home/my-activity'>My Activity</a>
+        <a mat-list-item routerLink='/home/lost'>Lost</a>
+        <a mat-list-item routerLink="/home/found">Found</a>
         <mat-divider *ngIf="user.admin"></mat-divider>
-        <a *ngIf="user.admin" mat-list-item routerLink="/admin">Admin</a>
-        <a *ngIf="user.admin" mat-list-item routerLink="/stats">Stats</a>
+        <a *ngIf="user.admin" mat-list-item routerLink="/home/admin">Users</a>
+        <a *ngIf="user.admin" mat-list-item routerLink="/home/stats">Stats</a>
     </mat-nav-list>
 </div>

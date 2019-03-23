@@ -1,26 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { CustomerService } from './../utils/CustomerService';
+import { Component, OnInit, Input } from '@angular/core';
 import UserService from '../../services/user.service';
-import { User } from '../../models/user';
+import { UserModel } from '../../models/user';
+import { Globals } from './../utils/Globals';
 
 @Component({
   selector: 'navbar-menu',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarMenu implements OnInit {
-  private user: Object;
+  private userString: string;
 
-  constructor(private userServ: UserService) {
+  @Input() user: UserModel; 
 
+  constructor(private globals: Globals,
+              private custService: CustomerService,
+              private userService: UserService,
+              ) {
+      this.globals.connectedUser = this.custService.getToken() as UserModel;
   }
 
   ngOnInit() {
-    this.loadUser();
-  }
-
-  public loadUser() {
-    this.userServ.getUserByUsernameAndPassword("liort", "1122").subscribe(
-      res => { this.user = res.user }
-    )
+    this.userString = JSON.stringify(this.globals.connectedUser);
   }
 }

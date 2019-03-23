@@ -3,8 +3,8 @@ mat-divider {
 }
 
 .navbar-header {
-    margin-top: 1em;
-    margin-right: 0.5em;
+    margin-top: 20px;
+    
 }
 
 .profilePic {
@@ -17,4 +17,13 @@ mat-divider {
 .navbar {
     width: 13em;
     margin-left: 1em;
+}
+
+mat-toolbar {
+    background: rgb(219, 217, 217);
+}
+
+a.username {
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
