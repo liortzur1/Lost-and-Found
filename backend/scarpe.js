@@ -7,6 +7,8 @@ const scarping = require('./models/scarping')
 
 
 // Connect mongoose to our database
+
+mongoose.connect('mongodb+srv://shoval:Aa123456!@cluster0-z9f1w.mongodb.net/test?retryWrites=true');
 mongoose.connect(config.database);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -33,9 +35,8 @@ function getProducts() {
 
                 let product = new scarping({ name: anchors[i] })
                 product.save()
-              //if (i == 6) return false; //deleteeeeeeeeeeeeeeeeeeeeeeeee
+              //if (i == 6) return false; 
             });
           }
     });
     }
-

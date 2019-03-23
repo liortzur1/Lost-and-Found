@@ -5,4 +5,3 @@ const scarpingSchema = Schema({
 });
 
  module.exports = mongoose.model("scarping", scarpingSchema);
-
