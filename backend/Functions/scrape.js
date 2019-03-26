@@ -1,9 +1,9 @@
-var request = require('../node_modules/request');
-var cheerio = require('../node_modules/cheerio');
+var request = require('request');
+var cheerio = require('cheerio');
 
-const mongoose = require('../node_modules/mongoose');
-const config = require('./config/database');
-const scarping = require('./models/scarping')
+const mongoose = require('mongoose');
+const config = require('../config/database');
+const scarping = require('../models/scarping')
 
 
 // Connect mongoose to our database
