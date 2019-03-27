@@ -22,7 +22,7 @@ export class Admin {
   selection = new SelectionModel<UserModel>(true, []);
 
   constructor(private formBuilder: FormBuilder,
-              private userServ: UserService,
+              private userServ: UserService, 
               public dialog: MatDialog) {
     this.form = this.formBuilder.group({
       users: new FormArray([], minSelectedCheckboxes(1))

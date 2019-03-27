@@ -29,6 +29,10 @@ module.exports.getMessagesByUsername = (username) => {
     });
 };
 
+module.exports.getAllMessages = (callback) => {
+    return (messagesList.find().populate("fromUser").populate("toUser").populate("item").exec(callback));
+} 
+
 module.exports.getMessagesByItem = (item_id, callback) => {
     let query = { item: item_id };
     return (messagesList.find(query).populate("fromUser").populate("toUser").exec(callback));
